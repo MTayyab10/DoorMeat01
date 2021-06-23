@@ -1,0 +1,532 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+	<title>Book Butcher</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap"
+	      rel="stylesheet">
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+	      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+
+	<link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
+	<link rel="stylesheet" href="{% static 'fonts/brand/style.css' %}">
+
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+	<link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/aos.css' %}">
+
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	{#    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>#}
+
+
+</head>
+
+<body>
+
+<div class="site-wrap" id="home-section">
+	<div class="site-mobile-menu site-navbar-target">
+		<div class="site-mobile-menu-header ">
+			<div class="site-mobile-menu-close mt-3">
+				<span class="icon-close2 js-menu-toggle "></span>
+			</div>
+		</div>
+		<div class="site-mobile-menu-body"></div>
+	</div>
+
+	<header class="bg-light m-0 p-0 site-navbar site-navbar-target"
+	        role="banner">
+
+		<div class="container">
+			<div class="row align-items-center position-relative">
+
+				<div class="col-3">
+					<div class="site-logo">
+						<a href="{% url 'home1:index' %}"><strong>DoorMeat</strong></a>
+					</div>
+				</div>
+
+				<div class="col-9 text-right">
+
+					<span class="d-inline-block d-lg-none">
+						<a href="#" class="site-menu-toggle js-menu-toggle py-5"><span
+								class="icon-menu text-secondary h3"></span></a></span>
+
+
+					<nav class="site-navigation text-right ml-auto d-none d-lg-block"
+					     role="navigation">
+
+						<ul class="site-menu main-menu js-clone-nav ml-auto">
+
+							<li><a href="{% url 'home1:index' %}">Home</a></li>
+							<li><a href="#learn-more" class="nav-link">Learn more</a></li>
+							<li><a href="#faq" class="nav-link">FAQ</a></li>
+							<li><a href="" class="nav-link">Help</a></li>
+
+						</ul>
+
+					</nav>
+				</div>
+
+			</div>
+		</div>
+	</header>
+
+	<div class="site-section">
+		<div class="container">
+			<div class="offset-md-1 col-md-10">
+
+				{% if request.user.is_authenticated %}
+
+					{% if customer.name in request.user.username %}
+
+						<!-- always put p & m below otherwise
+                        things it will not give bug on mobile-->
+						<div class="text-left pt-3 mt-3">
+
+							<h4>
+								Hi, {{ customer.name }}
+								{#								<a href="{% url 'accounts2:edit_profile' %}" class="text-primary">#}
+								{#								{{ customer.name }}</a>#}
+							</h4>
+						</div>
+
+						<div class="text-center">
+
+							{#							<h4 class="text-success font-weight-bold pt-3">Thank you for your interest!</h4>#}
+							<p class="font-size-17">Below is your order information.
+								{#								Shortly we will talk to you with email/call.#}
+
+								<!-- first digit of name and C shows customer
+								and digit is just random which creates by
+								django -->
+								Your order Id is
+								<strong class="font-size-18 font-weight-bold"
+								        style="font-family: sans-sarif;">{{ customer.name | make_list | first | title }}C{{ customer.id }}</strong>
+							</p>
+
+						</div>
+
+						<!-- Order Info -->
+
+						<div class="">
+							<h3 class="font-weight-bold text-black">Order details</h3>
+							<p class="font-size-17 text-secondary">Please check your order, carefully.
+								After payment you cannot change.
+							</p>
+						</div>
+
+						<div class="table-responsive">
+							<table class="table table-sm table-bordered text-center">
+
+								<tr>
+									{#									<th>Order Id</th>#}
+									<th>Anml (Qty)</th>
+									{#									<th>Qty</th>#}
+									<th>Time</th>
+									<th>Addr</th>
+								</tr>
+								<tr>
+									<!-- name is str cannot do
+									slice so first convert it in list
+									then got 1 char by calling first -->
+									{#									<td>{{ customer.name | make_list | first | title }}C{{ customer.id }}</td>#}
+									<td>{{ customer.animal }} {{ customer.quantity }}</td>
+									{#									<td>{{ customer.quantity }}</td>#}
+									<td>{{ customer.time }}</td>
+									<td>{{ customer.town }}, {{ customer.city }}</td>
+								</tr>
+
+							</table>
+						</div>
+
+						<!-- End of Order Info -->
+
+
+						{#						<div class="alert alert-success" role="alert">#}
+						{#							<h4 class="alert-heading">Well Done!</h4>#}
+						{#							<p>Aww yeah, you successfully read this important alert message. This example text is going#}
+						{#								to run a bit longer so that you can see how spacing within an alert works with this kind#}
+						{#								of content.</p>#}
+						{#							<div class="p-1">#}
+						{#							<table class="table table-bordered">#}
+						{##}
+						{#								<tr>#}
+						{#									<th>Order Id</th>#}
+						{#									<th>Anml</th>#}
+						{#									<th>Qty</th>#}
+						{#									<th>Time</th>#}
+						{#									<th>Addr</th>#}
+						{#								</tr>#}
+						{#								<tr>#}
+						{#									<!-- name is str cannot do#}
+						{#									slice so first convert it in list#}
+						{#									then got 1 char by calling first -->#}
+						{#									<td>{{ customer.name | make_list | first | title }}{{ customer.id }}</td>#}
+						{#									<td>{{ customer.animal }}</td>#}
+						{#									<td>{{ customer.quantity }}</td>#}
+						{#									<td>{{ customer.time }}</td>#}
+						{#									<td>{{ customer.town }}, {{ customer.city }}</td>#}
+						{#								</tr>#}
+						{#							</table>#}
+						{#						</div>#}
+						{#							<hr>#}
+						{#							<p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice#}
+						{#								and tidy.</p>#}
+						{#						</div>#}
+
+
+						<!-- just let know user that form
+                         is updated simple -->
+
+						<div class="container">
+
+							{% if messages %}
+
+								<!-- just to make sure to apply like this
+								if not then can have wrong messages, ok-->
+
+								{% for message in messages %}
+
+									{% if 'success' in message.tags %}
+
+										<div class="col-md-5" id="msg">
+
+											<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+												<symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+													<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+												</symbol>
+												<symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+													<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+												</symbol>
+												<symbol id="exclamation-triangle-fill" fill="currentColor"
+												        viewBox="0 0 16 16">
+													<path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+												</symbol>
+											</svg>
+
+											<div class="alert alert-success d-flex align-items-center" role="alert">
+												<svg class="bi flex-shrink-0 me-2" width="20" height="20" role="img"
+												     aria-label="Success:">
+													<use xlink:href="#check-circle-fill"/>
+
+												</svg>
+
+												<div>
+													{{ message }}
+												</div>
+
+											</div>
+										</div>
+									{% endif %}
+								{% endfor %}
+							{% endif %}
+						</div>
+
+						<script>
+                            // suppose the `id` attribute of element is `msg`.
+                            let message_ele = document.getElementById("msg");
+
+                            setTimeout(function () {
+                                message_ele.style.display = 'none';
+                            }, 6000);
+                            // Timeout is 6 sec, you can change it
+
+                            document.addEventListener('DOMContentLoaded',
+                                function () {
+                                    document.querySelector("#del")
+                                }
+                            )
+
+						</script>
+
+						<!-- user msg update alert form end -->
+
+						<!-- change, delete etc buttons -->
+
+						<div class="pt-1 pb-2">
+							<a class="btn btn-outline-secondary mr-3 font-size-13"
+							   href="{% url 'orders3:cust_order_update' customer.id %}">
+								Change
+							</a>
+							{#							    <a class="font-weight-bolder font-size-17" href="{% url 'businessAc:customer_order_update' customer.id %}">#}
+							{#								Change order </a>#}
+
+							<a class="btn btn-outline-success mr-3 font-size-13"
+							   href="{% url 'orders3:cust_order_confirm' customer.id %}">
+								Confirm
+							</a>
+
+							<a class="btn btn-outline-danger font-size-13"
+							   title="delete" onclick="return confirm('Are you sure to delete order')"
+							   href="{% url 'orders3:cust_order_delete' customer.id %}">
+								Delete
+							</a>
+
+						</div>
+
+						<!-- Order Payment Section -->
+
+						{#						<div class="pt-2">#}
+						{#							<h3 class="font-weight-bolder text-black">Payment</h3>#}
+						{#							<p>After doing payment your order will be Confirm</p>#}
+						{#						</div>#}
+
+						<div class="card w-100 mt-3">
+
+							<div class="card-body">
+								<h3 class="card-title font-weight-bold">Price Info</h3>
+
+								<!-- 1 price per animal -->
+
+								<div class="row">
+
+									<div class="col">
+
+										{{ customer.animal }}
+										x
+										<inline class="font-weight-bolder" style="font-family: sans-serif">
+											{{ customer.quantity }}
+										</inline>
+
+									</div>
+
+									<div class="col" style="font-family: sans-serif">
+										Rs. {{ price_before_qty }}0 x {{ qty1 }}
+									</div>
+								</div>
+
+								<hr>
+
+								<!-- 2 subtotal -->
+
+								<div class="row pt-1">
+									<div class="col">
+										Subtotal
+									</div>
+									<div class="col" style="font-family: sans-serif">
+										Rs. {{ price }}0
+									</div>
+								</div>
+
+								<!-- 3 Service fee -->
+
+								<div class="row pt-1">
+									<div class="col">
+										Service fee
+									</div>
+									<div class="col" style="font-family: sans-serif">
+										Rs. {{ service_fee }}0 x {{ qty1 }}
+									</div>
+
+								</div>
+
+								<!-- 4 Discount coupon -->
+
+
+{#								{% if coupon %}#}
+
+									<div class="row pt-1">
+										<div class="col">
+											Discount ({{ coupon_valid.coupon }})
+										</div>
+
+										<div class="col" style="font-family: sans-serif">
+											{#										{% if coupon %}#}
+											Rs. {{ service_fee }}0 x {{ qty1 }}
+											{#										{% endif %}#}
+										</div>
+
+									</div>
+
+{#								{% endif %}#}
+
+								<!-- 5 total -->
+
+								<div class="row font-weight-bold pt-1 pb-2">
+									<div class="col">
+										Total (Pkr)
+									</div>
+									<div class="col" style="font-family: sans-serif">
+										Rs. {{ total }}0
+									</div>
+								</div>
+
+								<!-- Voucher  -->
+
+								<div class="row pt-1 pb-2">
+									<div class="col">
+										<a href="" data-toggle="modal" data-target="#myModal">Do you have a voucher for
+											discount?
+										</a>
+									</div>
+								</div>
+
+								<!-- Modal -->
+
+								<div class="modal fade pt-5 mt-5" id="myModal" role="dialog">
+									<div class="modal-dialog">
+
+										<!-- Modal content-->
+
+										{#										<form id="coupon_form">#}
+										{##}
+										{#											<input type="text" name="surname" placeholder="Enter Coupon Code">#}
+										{#											<input type="submit">#}
+										{#										</form>#}
+										{##}
+
+
+
+										<form method="POST"
+											 action="{% url 'orders3:cust_response' customer.id %}"
+                                              id="coupon_form" class="row g-3 needs-validation">
+
+										      {% csrf_token %}
+
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close font-size-28"
+													        data-dismiss="modal">
+														&times;
+													</button>
+													<!--<h6 class="modal-title">Modal Header</h4>-->
+												</div>
+												{##}
+												<div class="modal-body">
+
+													<div class="col-md-9">
+
+														<input type="text" id="coupon"
+														       class="form-control" value="{{ coupon_valid.coupon }}"
+														       placeholder="Enter coupon code"
+														       aria-label="coupon" required>
+													</div>
+
+													<br>
+													<!-- info aboout coupon -->
+													<h4 id="coupon_info"></h4>
+												</div>
+
+												<div class="modal-footer">
+
+													<button type="button" class="btn btn-secondary"
+													        data-dismiss="modal">
+														Close
+													</button>
+{#													<input type="submit" class="btn btn-primary">#}
+													<button type="submit" class="btn btn-primary">
+														Submit
+													</button>
+{#													<div class="spinner-border text-primary" role="status">#}
+{#														<span class="visually-hidden">Loading...</span>#}
+{#													</div>#}
+												</div>
+
+											</div>
+
+										</form>
+
+									    <script type="text/javascript">
+
+                                            $(document).on('submit', '#coupon_form', function(e){
+                                                e.preventDefault();
+
+                                                $.ajax({
+                                                    type: 'POST',
+	                                                {#url: url,#}
+
+	                                                {#url: 'c/response/<customer.id>',#}
+
+	                                                url: "{% url 'orders3:cust_response' customer.id %}",
+                                                    data: {
+                                                        coupon: $('#coupon').val(),
+	                                                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                                                    },
+
+                                                    success: function () {
+                                                        document.querySelector('#coupon_info').innerHTML = "Coupon is submitted";
+
+                                                    }
+
+                                                });
+                                            });
+
+										</script>
+
+									</div>
+								</div>
+
+
+								<a href="#" class="btn btn-primary">Place Oder Now</a>
+								<script>
+                                    let time = Date();
+                                    let time2 = new Date();
+                                    let total_time = time2.getMonth() + 1;
+                                    let total_time2 = time2.getDate();
+
+                                    document.write(time2.toDateString())
+                                    {#document.write(time2.toString())#}
+								</script>
+							</div>
+
+						</div>
+
+
+						<!-- End of Order Payment Section -->
+
+
+
+
+						{#							<div class="pt-3 pb-2">#}
+						{#								<h3 class="font-weight-bolder text-black">Payment</h3>#}
+						{#							    <p class="lead">after payment your order will confirmed</p>#}
+						{#							</div>#}
+
+					{% else %}
+
+						<div class="">
+							<h2 class="text-left font-weight-bolder">Note:</h2>
+							<p class="lead">You must need to <a href="{% url 'accounts2:signin' %}"> login </a> for
+								accessing this page. Thanks</p>
+						</div>
+
+					{% endif %}
+				{% endif %}
+
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/jquery.sticky.js' %}"></script>
+<script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'js/jquery.animateNumber.min.js' %}"></script>
+<script src="{% static 'js/jquery.fancybox.min.js' %}"></script>
+<script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+<script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
+<script src="{% static 'js/aos.js' %}"></script>
+
+<script src="{% static 'js/main.js' %}"></script>
+
+</div>
+</body>
+
+</html>
