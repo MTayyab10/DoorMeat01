@@ -1,0 +1,637 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+	<title>DoorMeat</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!--{#	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap"#}-->
+	<!--{#	      rel="stylesheet">#}-->
+
+	<link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
+	<link rel="stylesheet" href="{% static 'fonts/brand/style.css' %}">
+
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+	<link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/aos.css' %}">
+
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+	<!--Font Awesome Icons -->
+
+	<script src="https://kit.fontawesome.com/97dffca0dc.js" crossorigin="anonymous"></script>
+
+	<style>
+
+        .anmte .sd:before {
+            content: '';
+            animation: animate infinite 30s;
+        }
+
+        @keyframes animate {
+            0% {
+                content: 'Become a part of DoorMeat';
+            }
+            50% {
+                content: 'Feel proud to part of our company';
+            }
+            100% {
+                content: 'Join now, DoorMeat';
+            }
+        }
+
+	</style>
+
+</head>
+
+<body>
+
+<div class="site-wrap" id="home-section">
+	<div class="site-mobile-menu site-navbar-target">
+		<div class="site-mobile-menu-header">
+			<div class="site-mobile-menu-close mt-3">
+				<span class="icon-close2 js-menu-toggle"></span>
+			</div>
+		</div>
+		<div class="site-mobile-menu-body"></div>
+	</div>
+
+    <!-- show different msgs to user let
+      know that like login etc --->
+
+	{% if messages %}
+
+		<div class="container" id="msg">
+			<div class="col-md-5" >
+
+				<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+					<symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+						<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+					</symbol>
+					<symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+						<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+					</symbol>
+					<symbol id="exclamation-triangle-fill" fill="currentColor"
+					        viewBox="0 0 16 16">
+						<path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+					</symbol>
+				</svg>
+
+				<div class="alert alert-success d-flex align-items-center" role="alert">
+					<svg class="bi flex-shrink-0 me-2" width="20" height="20" role="img"
+					     aria-label="Success:">
+						<use xlink:href="#check-circle-fill"/>
+
+					</svg>
+					{% for message in messages %}
+						<div class="ml-2">
+							 {{ message }}
+						</div>
+
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+
+	{% endif %}
+
+	<script>
+        // suppose the `id` attribute of element is `msg`.
+        let message_ele = document.getElementById("msg");
+
+        setTimeout(function () {
+            message_ele.style.display = "none";
+        }, 6000);
+        // Timeout is 6 sec, you can change it
+
+        document.addEventListener('DOMContentLoaded',
+            function () {
+                document.querySelector("#del")
+            }
+        )
+
+	</script>
+
+    <!-- End of msg section --->
+
+	<!-- header and navbar section -->
+
+	<header class="sticky-top position-sticky bg-primary m-0 p-0 light site-navbar site-navbar-target"
+	        role="banner">
+
+		<div class="container">
+			<div class="row align-items-center position-relative">
+
+				<div class="col-3">
+					<div class="site-logo">
+						<a href="{% url 'home1:index' %}"><strong><i>DoorMeat</i></strong></a>
+					</div>
+				</div>
+
+				<div class="col-9 text-right">
+
+					<span class="d-inline-block d-lg-none">
+						<a href="#" class="site-menu-toggle js-menu-toggle py-0"><span
+								class="icon-menu text-white h3"></span></a></span>
+
+					<nav class="site-navigation text-right ml-auto d-none d-lg-block"
+					     role="navigation">
+
+						<ul class="site-menu main-menu js-clone-nav ml-auto">
+
+							<li class="active"><a href="{% url 'home1:index' %}" class="nav-link">Home</a></li>
+							{#							<li><a href="#tutor" class="nav-link">How it works</a></li>#}
+							<li><a href="{% url 'orders3:customer_form' %}">Need butcher</a></li>
+							<li><a href="{% url 'orders3:butcher_form' %}" class="nav-link">Become partner</a></li>
+
+							{#							<li><a href="{% url 'home1:about' %}" class="nav-link">About</a></li>#}
+							{#							<li><a href="{% url 'home1:contact' %}" class="nav-link">Contact</a></li>#}
+
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+								   data-toggle="dropdown"
+								   aria-haspopup="true" aria-expanded="false">
+									More
+								</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+									<a class="dropdown-item text-black" href="{% url 'blog4:index' %}">Blog</a>
+									<a class="dropdown-item text-black" href="{% url 'home1:about' %}">About</a>
+									<a class="dropdown-item text-black" href="{% url 'home1:contact' %}">Contact</a>
+									{#							          <a href="{% url 'shop:about' %}" class="nav-link text-black">About</a>#}
+									{#								     #}
+									{#							          <!--<a href="{% url 'shop:contact' %}"  class="nav-link text-black">Contact</a>-->#}
+								</div>
+							</li>
+
+							{% if user.is_authenticated %}
+
+								<li><a href="{% url 'accounts2:edit_profile' %}"
+								       class="font-weight-bolder nav-link">Hi, {{ user.username.title }}</a></li>
+
+								{% for c in customer %}
+									{% if c.name == user.username %}
+
+										<li><a href="{% url 'orders3:cust_response' c.id %}">My Order</a></li>
+
+									{% endif %}
+								{% endfor %}
+
+								<li><a href="{% url 'accounts2:logout' %}" class="nav-link">Logout</a></li>
+
+							{% else %}
+
+								<li><a href="{% url 'accounts2:signin' %}" class="nav-link">Login</a></li>
+
+								<li><a href="{% url 'accounts2:register' %}" class="nav-link">Register</a></li>
+
+							{% endif %}
+
+						</ul>
+					</nav>
+				</div>
+
+			</div>
+		</div>
+
+	</header>
+
+
+
+	<!-- site-section-cover overlay overlap -->
+
+	<div class="site-section-cover overlay"
+	     style="background-image: url('/static/images/all-animals-vector.jpg');">
+		{#https://www.filepicker.io/api/file/4pwDDXkTdFPzLDrX7Egc' -->#}
+
+		<div class="container">
+			<div class="row align-items-center justify-content-center">
+				<div class="col-lg-10">
+					<h2 class="text-light">It's time for <strong>Sacrifice</strong></h2>
+
+					<h3 class="text-light">This is a simple hero unit, a simple jumbotron-style component for
+						calling extra attention to featured content or information.
+						Enjoy this Eid with Your Family
+					</h3>
+					{#					<h2 class="text-light ">Not with Butchers</h2>#}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- How it works - section -->
+
+	<div class="site-section text-center">
+		<div class="container">
+
+			<h2 class="font-weight-bold mb-1">How it works</h2>
+			<p class="font-size-16">Clear, easy and simple Procedure!</p>
+			<hr>
+			<!-- Steps of how it Work -->
+
+			<div class="row">
+
+				<!-- 1 Customer form  -->
+
+				<div class="offset-md-1 col-md-4">
+					<div class="p-2 m-2">
+
+						<div class="pb-2">
+							<img src="{% static 'images/butcher.jpg' %}"
+							     alt="Butcher" width="70">
+						</div>
+
+						<h4 class="font-weight-bolder pt-2">Need a Butcher</h4>
+						<div class="font-size-17 pb-1">
+							Hire a profession butcher at suitable price, choose your time and location.
+						</div>
+
+						<i class="fas fa-arrow-right text-secondary font-size-15"></i>
+
+						<a href="{% url 'orders3:customer_form' %}"
+						   class="btn btn-link">
+							<button type="button" class="btn btn-outline-primary font-size-14">
+								Book Butcher
+							</button>
+						</a>
+
+					</div>
+				</div>
+
+				<!-- 2 Partner form -->
+
+				<div class="offset-md-2 col-md-4"> <!--for p & m mt-4 pt-4-->
+					<div class="p-2 m-2"> <!--for p & m mt-4 mb-4-->
+
+						<div class="pb-2">
+							<img src="{% static 'images/partner.png' %}"
+							     alt="Partner" width="75">
+						</div>
+
+						<h4 class="font-weight-bolder">Become Partner</h4>
+
+						<div class="font-size-17 pb-1">
+							Grow your orders & reach new customers by partnering with us.
+						</div>
+
+						<i class="fas fa-arrow-right text-secondary font-size-15"></i>
+						<a href="{% url 'orders3:butcher_form' %}" class="btn btn-link">
+							<button type="button" class="btn btn-outline-primary font-size-14">
+								Start Earning
+							</button>
+						</a>
+
+
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+	<!-- END of How it works Section -->
+
+
+	<!-- Available Cities Section-->
+
+	<div class="site-section bg-light text-center">
+		<div class="container">
+
+			<div class="pb-2">
+				<h3 class="font-weight-bold">Available</h3>
+				<div class="font-size-15">Our services are ONLY here</div>
+			</div>
+
+			<div class="row">
+
+				<!-- 1 Lahore -->
+
+				<div class="offset-md-2 col-md-4">
+					<div class="m-2 p-2">
+
+						<div class="pb-2">
+							<img src="/static/images/lhr.jpg" width="270" alt="lahore"
+							     class=""/>
+						</div>
+						<h4 class="font-weight-bolder pt-1">Lahore</h4>
+						<div class="text-secondary font-size-17">
+							The heart of Pakistan.
+						</div>
+
+					</div>
+				</div>
+
+				<!-- 2 Gujranwala -->
+
+				<div class="col-md-4">
+					<div class="m-2 p-2">
+						<div class="pb-2">
+							<img src="/static/images/grw.jpg" width="279" alt="gujranwala"/>
+						</div>
+
+						<h4 class="font-weight-bolder pt-1">Gujranwala</h4>
+
+						<div class="text-secondary font-size-17">
+							The city of wrestlers.
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+	<!--End of Available Cities Section-->
+
+
+	<!-- Advantages of Work - Section -->
+
+	<div class="site-section text-center">
+		<div class="container">
+			<div class="p-2"> <!-- See how We do Work -->
+				<h3 class="font-weight-bold">Advantages</h3>
+				<div class="font-size-18">
+					Benefits of work with us
+				</div>
+			</div>
+
+			<div class="row">
+
+				<!-- First 1 Customer support -->
+
+				<div class="col-md-4">
+					<div class="m-2 p-2">
+						<div class="p-1">
+							<img src="/static/images/customer-service.svg" width="70" alt="customer-service"
+							     class=""/>
+						</div>
+						<div class="pt-2">
+
+							<h4 class="font-weight-bolder">Automate Dispatch</h4>
+							<p class="mt-2 font-size-18">
+								Use our auto-sign system. We use our algorithms for better service.
+							</p>
+
+						</div>
+
+
+					</div>
+				</div>
+
+				<!-- Second 2 alerts -->
+
+				<div class="col-md-4">
+					<div class="m-2 p-2">
+						<div class="p-1">
+							<img src="/static/images/tracking-alerts.svg" width="70" alt="alerts"/>
+						</div>
+
+						<div class='pt-2'>
+
+							<h4 class="font-weight-bolder">Real Time Tracking</h4>
+							<p class="mt-2 text-secondary font-size-18">
+								Avoid sending orders one by one, use our
+								auto-assign feature.
+							</p>
+						</div>
+
+
+					</div>
+
+				</div>
+
+				<!-- Third 3 digital proof -->
+
+				<div class="col-md-4">
+					<div class="m-2 p-2">
+						<div class="p-1">
+							<img src="/static/images/signature-verification.svg" width="70" alt="Digital Proof of Order"
+							     class=""/>
+						</div>
+						<div class='pt-2'>
+
+							<h4 class="font-weight-bolder">Digital Proof</h4>
+							<p class="mt-2 text-secondary font-size-18">
+								You can show proof of order. If you are customer
+								or even butcher.
+							</p>
+
+						</div>
+
+
+					</div>
+				</div>
+
+				<!-- Fourth 4 -->
+
+				{#				<div class="col-md-4">#}
+				{#					<div class="pr-3 mt-2 mb-4">#}
+				{#						<div class="pt-4 pb-4">#}
+				{#							<img src="/static/images/rewards-program.svg" width="74" alt="Digital Proof of Order"#}
+				{#							     class=""/>#}
+				{#						</div>#}
+				{#						<h4 class="font-weight-bold">Rewards Program</h4>#}
+				{#						<p class="mt-2 text-secondary lead">#}
+				{#							Track customer spending and our system will categorize your customers into different tier#}
+				{#							levels using our spending rewards program based on their monthly spending.#}
+				{#						</p>#}
+				{##}
+				{#					</div>#}
+				{#				</div>#}
+
+				<!-- Five 5 -->
+
+				{#				<div class="col-md-4">#}
+				{#					<div class="pr-4 pl-4 mt-2 mb-4">#}
+				{#						<div class="pt-4 pb-4">#}
+				{#							<img src="/static/images/autonomous-delivery-communication.svg" width="80"#}
+				{#							     alt="Digital Proof of Order"#}
+				{#							     class=""/>#}
+				{#						</div>#}
+				{#						<h4 class="font-weight-bold">Autonomous Communication</h4>#}
+				{#						<p class="mt-2 text-secondary lead">#}
+				{#							Autonomously send SMS and call status update notifications and protect your phone numbers.#}
+				{#						</p>#}
+				{##}
+				{#					</div>#}
+				{#				</div>#}
+
+				<!-- Six -->
+
+				{#				<div class="col-md-4">#}
+				{#					<div class="pl-4 pr-4 mt-2 mb-4">#}
+				{#						<div class="pt-4 pb-4">#}
+				{#							<img src="/static/images/delivery-software-enhanced-analytics.svg" width="90"#}
+				{#							     alt="Enhanced Analytics"#}
+				{#							     class=""/>#}
+				{#						</div>#}
+				{#						<h4 class="font-weight-bold">Enhanced Analytics</h4>#}
+				{#						<p class="mt-2 text-secondary lead">#}
+				{#							Make more informed decisions using our system,#}
+				{#							and enhance your analytics in better way.#}
+				{#						</p>#}
+				{##}
+				{#					</div>#}
+				{#				</div>#}
+
+			</div>
+		</div>
+	</div>
+
+	<!-- End of How we work - section -->
+
+
+	<!-- Animation Section -->
+
+	<div class="site-section bg-black py-4 cta">
+		<div class="container">
+
+			<div class="row align-items-center">
+				<div class="anmte col-lg-7 mb-4 mb-md-0">
+
+					<h4 class="text-white font-weight-bolder">
+						<span class="sd"></span>
+					</h4>
+					<p class="mb-0 opa-7 font-size-18">
+						Welcome to DoorMeat, Happy Eid!
+					</p>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--End Animation Section -->
+
+	<!-- Customer testimonials -->
+
+	<div class="site-section text-center">
+		<div class="container">
+
+			<h3 class="font-weight-bolder pb-2">
+				Customer Reviews
+			</h3>
+
+			<div class="row">
+
+				<div class="offset-md-1 col-md-4">
+					<h4 class="">Meet Sheraz</h4>
+					<p class="font-size-18">
+						from Lahore'.
+						Ali has been a our customer for a few months
+						and would like to tell you a little bit about his experience so far.
+					</p>
+				</div>
+				<!--<div class="col-md-4 offset-md-1">-->
+
+				<!--	<iframe width="340" height="300" src="https://www.youtube.com/embed/x5trGVMKTdY" frameborder="0"-->
+				<!--	        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"-->
+				<!--	        allowfullscreen></iframe>-->
+
+				<!--</div>-->
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<!-- End of Customer testimonials -->
+
+
+	{#	<div class="site-section container">#}
+	{#		<div>#}
+	{#			<script async src="https://cse.google.com/cse.js?cx=704b92d517e3e9a72"></script>#}
+	{#			<div class="gcse-searchbox-only"></div>#}
+	{#		</div>#}
+	{#	</div>#}
+
+
+	<footer class="site-footer bg-light m-0 p-0">
+		<div class="container pt-4">
+			<div class="row">
+
+				<div class="col-lg-4">
+					<h2 class="footer-heading mb-3">Follow Us</h2>
+
+					<ul class="list-unstyled social">
+						<li><a href="#"><span class="icon-facebook"></span></a></li>
+						<li><a href="#"><span class="icon-youtube"></span></a></li>
+						<li><a href="#"><span class="icon-twitter"></span></a></li>
+						{#						<li><a href="#"><span class="icon-linkedin"></span></a></li>#}
+					</ul>
+				</div>
+
+				<div class="col-lg-8 ml-auto">
+					<div class="row">
+						<div class="col-lg-6">
+							<h2 class="footer-heading mb-2">Company</h2>
+							<ul class="list-unstyled">
+								<li><a href="#">About us</a></li>
+								<li><a href="#">Contact</a></li>
+							</ul>
+						</div>
+						<div class="col-lg-6">
+							<h2 class="footer-heading mb-2">Resources</h2>
+							<ul class="list-unstyled">
+								<li><a href="#">Terms of Use</a></li>
+								<li><a href="#">Privacy Policy</a></li>
+							</ul>
+						</div>
+						<!--<div class="col-lg-4">-->
+						<!--	<h2 class="footer-heading mb-4">Support</h2>-->
+						<!--	<ul class="list-unstyled">-->
+						<!--		<li><a href="#">Contact Us</a></li>-->
+						<!--	</ul>-->
+						<!--</div>-->
+
+						<!--<div class="col-lg-3">-->
+						<!--	<h2 class="footer-heading mb-4">Contribute</h2>-->
+						<!--	<ul class="list-unstyled">-->
+						<!--		<li><a href="#">Invest</a></li>-->
+						<!--		<li><a href="">Careers</a></li>-->
+						<!--	</ul>-->
+						<!--</div>-->
+
+					</div>
+				</div>
+			</div>
+
+			<div class="row text-center mb-0">
+				<div class="col-md-12">
+					<div class="border-top pt-2 pb-1">
+						<p>
+							DoorMeat &copy;<script>document.write(new Date().getFullYear());</script>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+</div>
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/jquery.sticky.js' %}"></script>
+<script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'js/jquery.animateNumber.min.js' %}"></script>
+<script src="{% static 'js/jquery.fancybox.min.js' %}"></script>
+<script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+<script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
+<script src="{% static 'js/aos.js' %}"></script>
+
+<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>

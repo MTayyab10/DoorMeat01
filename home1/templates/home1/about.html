@@ -1,0 +1,246 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+	<title>findButcher</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap"
+	      rel="stylesheet">
+
+	<link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
+	<link rel="stylesheet" href="{% static 'fonts/brand/style.css' %}">
+
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+	<link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/aos.css' %}">
+
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+	<style>
+
+        .anmte .sd:before {
+            content: '';
+            animation: animate infinite 20s;
+        }
+
+        @keyframes animate {
+            0% {
+                content: 'welcome dear to companynam';
+
+            }
+            50% {
+                content: 'expand your orders, with your goals';
+            }
+            100% {
+                content: 'your time, you are the boss!';
+            }
+
+        }
+
+        .numberCircle {
+		{#font-size: 5rem;#}{#width: 5rem;#} background-color: aquamarine;
+            padding: 8px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+        }
+
+
+
+	</style>
+
+</head>
+
+<body>
+
+<div class="site-wrap" id="home-section">
+	<div class="site-mobile-menu site-navbar-target">
+		<div class="site-mobile-menu-header">
+			<div class="site-mobile-menu-close mt-3">
+				<span class="icon-close2 js-menu-toggle"></span>
+			</div>
+		</div>
+		<div class="site-mobile-menu-body"></div>
+	</div>
+
+	<header class="sticky-top position-sticky bg-white m-0 p-0 dark site-navbar site-navbar-target"
+	        role="banner">
+
+		<div class="container">
+			<div class="row align-items-center position-relative">
+
+				<div class="col-3">
+					<div class="site-logo">
+						<a href="{% url 'home1:index' %}"><strong>DoorMeat</strong></a>
+					</div>
+				</div>
+
+				<div class="col-9 text-right">
+
+					<span class="d-inline-block d-lg-none">
+						<a href="#" class="site-menu-toggle js-menu-toggle py-5 "><span
+								class="icon-menu text-dark h3"></span></a></span>
+
+					<nav class="site-navigation text-right ml-auto d-none d-lg-block"
+					     role="navigation">
+
+						<ul class="site-menu main-menu js-clone-nav ml-auto">
+
+							<li><a href="{% url 'home1:index' %}" class="nav-link">Home</a></li>
+							<li><a href="{% url 'orders3:customer_form' %}">Need butcher</a></li>
+							<li><a href="{% url 'orders3:butcher_form' %}" class="nav-link">Become partner</a></li>
+							<li><a href="{% url 'home1:contact' %}" class="nav-link">Contact</a></li>
+
+
+						</ul>
+					</nav>
+				</div>
+
+			</div>
+		</div>
+
+	</header>
+
+
+{#		<div class="site-section-cover overflow-hidden"#}
+{#	     style="background-image: url('/static/images/meet2.jpg');">#}
+
+		{#https://www.filepicker.io/api/file/4pwDDXkTdFPzLDrX7Egc' -->#}
+
+{#		<div class="container">#}
+{#			<div class="row align-items-center justify-content-center">#}
+{#				<div class="col-lg-10 text-center p-5">#}
+					{#					<h1 class="">Find <strong>Best Butchers</strong></h1>#}
+					{#					<h2 class="text-light mt-4 pt-4">Enjoy this Eid with Your Family</h2>#}
+{#					<h2 class="text-light font-weight-bold">About US</h2>#}
+{#				</div>#}
+{#			</div>#}
+{#		</div>#}
+
+	<!-- About us section -->
+
+	<div class="site-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 mb-5 mb-lg-0 order-lg-2">
+					<img src="/static/images/laptop2.jpg" alt="Image" class="img-fluid rounded">
+				</div>
+				<div class="col-lg-4 mr-auto">
+					<div class="heading mb-4">
+						<span class="caption">About us</span>
+						<h2>Our Company</h2>
+					</div>
+					<p>Tech bootCamp is an technology school that offers beginner to advanced courses in web design, web development, mobile development and game development taught by a team of dedicated expert teachers.</p>
+					<p>We believe that understanding, communicating with and controlling technology is a fundamental skill that everyone should have the opportunity to learn. The Treehouse Techdegree program will teach you the solid foundation you need to master coding skills and prepare for a career as a developer</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="site-section bg-light text-center">
+		<div class="container">
+
+			<h3 class="font-weight-bold mb-2">What is DoorMeat</h3>
+
+			<div class="offset-md-2 col-md-8 offset-md-2">
+				<p class="font-size-18">
+					DoorMeat is a technology company that on demand provide best Butchers to people.
+					We do this by empowering local businesses and generate new ways for people to earn and live.
+				</p>
+			</div>
+
+			<div class="">
+				<h4 class="font-weight-bolder">
+					Make your Eid special!
+					<a href="#form">
+						<button type="button" class="btn btn-outline-primary btn-group-lg m-3">
+							Get Started
+						</button>
+					</a>
+				</h4>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- End of About us section -->
+
+	<!-- Animation Section -->
+
+	<div class="site-section text-center bg-primary py-5 cta">
+
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="anmte col-lg-7 mb-4 mb-md-0">
+
+					<h3 class="mb-1 text-white">
+						<span class="sd"></span>
+					</h3>
+					<p class="mb-0 opa-7 lead">Start business with us. you will feel proud.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- End Animation Section -->
+
+	<!-- About Us  -->
+
+	<div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 mb-5 mb-lg-0">
+            <img src="/static/images/laptop2.jpg" alt="Image" class="img-fluid rounded">
+          </div>
+          <div class="col-lg-4 ml-auto">
+            <div class="heading mb-4">
+              <span class="caption">Why Founded</span>
+              <h2>Mission and Vision</h2>
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit suscipit, repudiandae similique accusantium eius nulla quam laudantium sequi.</p>
+            <p>Debitis voluptates corporis saepe molestias tenetur ab quae, quo earum commodi, laborum dolore, fuga aliquid delectus cum ipsa?</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+	<!-- customer section -->
+
+	<div class="site-section">
+		<div class="container">
+
+			<h3 class="font-weight-bold">Meet Our Happy Customers</h3>
+
+		</div>
+
+	</div>
+
+</div>
+
+
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/jquery.sticky.js' %}"></script>
+<script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'js/jquery.animateNumber.min.js' %}"></script>
+<script src="{% static 'js/jquery.fancybox.min.js' %}"></script>
+<script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+<script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
+<script src="{% static 'js/aos.js' %}"></script>
+
+<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>
