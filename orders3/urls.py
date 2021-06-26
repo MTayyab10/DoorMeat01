@@ -41,6 +41,6 @@ urlpatterns = [
 
     path('order_info/<int:user_id>', views.order_info, name='order_info'),
 
-    path('business/help', views.support, name='support')
+    path('help-centre', views.support, name='support')
 
 ]

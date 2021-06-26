@@ -52,25 +52,17 @@
 
 <body>
 
-<div class="site-wrap" id="home-section">
-	<div class="site-mobile-menu site-navbar-target">
-		<div class="site-mobile-menu-header">
-			<div class="site-mobile-menu-close mt-3">
-				<span class="icon-close2 js-menu-toggle"></span>
-			</div>
-		</div>
-		<div class="site-mobile-menu-body"></div>
-	</div>
 
-    <!-- show different msgs to user let
+<!-- show different msgs to user let
       know that like login etc --->
 
-	{% if messages %}
+{% if messages %}
 
-		<div class="container" id="msg">
-			<div class="col-md-5" >
+	<div class="alert alert-success alert-dismissible m-0" id="msg">
+		<div class="offset-md-3 h-25">
 
-				<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+			<div class="">
+				<svg class="" xmlns="http://www.w3.org/2000/svg" style="display: none;">
 					<symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
 						<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
 					</symbol>
@@ -83,25 +75,29 @@
 					</symbol>
 				</svg>
 
-				<div class="alert alert-success d-flex align-items-center" role="alert">
-					<svg class="bi flex-shrink-0 me-2" width="20" height="20" role="img"
+				<div class=" d-flex align-items-center" role="alert">
+					<svg class="bi flex-shrink-0 me-2" width="20" height="15" role="img"
 					     aria-label="Success:">
 						<use xlink:href="#check-circle-fill"/>
 
 					</svg>
+
 					{% for message in messages %}
 						<div class="ml-2">
-							 {{ message }}
+							{{ message }}
 						</div>
 
 					{% endfor %}
+
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 				</div>
 			</div>
-		</div>
 
-	{% endif %}
+		</div>
+	</div>
 
 	<script>
+
         // suppose the `id` attribute of element is `msg`.
         let message_ele = document.getElementById("msg");
 
@@ -118,7 +114,19 @@
 
 	</script>
 
-    <!-- End of msg section --->
+{% endif %}
+
+<!-- End of msg section --->
+
+<div class="site-wrap" id="home-section">
+	<div class="site-mobile-menu site-navbar-target">
+		<div class="site-mobile-menu-header">
+			<div class="site-mobile-menu-close">
+				<span class="icon-close2  js-menu-toggle"></span>
+			</div>
+		</div>
+		<div class="site-mobile-menu-body"></div>
+	</div>
 
 	<!-- header and navbar section -->
 
@@ -137,7 +145,7 @@
 				<div class="col-9 text-right">
 
 					<span class="d-inline-block d-lg-none">
-						<a href="#" class="site-menu-toggle js-menu-toggle py-0"><span
+						<a href="#" class="site-menu-toggle js-menu-toggle py-3"><span
 								class="icon-menu text-white h3"></span></a></span>
 
 					<nav class="site-navigation text-right ml-auto d-none d-lg-block"
@@ -202,7 +210,6 @@
 	</header>
 
 
-
 	<!-- site-section-cover overlay overlap -->
 
 	<div class="site-section-cover overlay"
@@ -212,11 +219,10 @@
 		<div class="container">
 			<div class="row align-items-center justify-content-center">
 				<div class="col-lg-10">
-					<h2 class="text-light">It's time for <strong>Sacrifice</strong></h2>
 
-					<h3 class="text-light">This is a simple hero unit, a simple jumbotron-style component for
-						calling extra attention to featured content or information.
-						Enjoy this Eid with Your Family
+					<h2 class="text-light">It's a time to <strong>Sacrifice</strong></h2>
+					<h3 class="text-light">Try to make a good Eid, Enjoy this Eid with your
+						family, not become
 					</h3>
 					{#					<h2 class="text-light ">Not with Butchers</h2>#}
 				</div>
@@ -239,55 +245,50 @@
 				<!-- 1 Customer form  -->
 
 				<div class="offset-md-1 col-md-4">
-					<div class="p-2 m-2">
 
-						<div class="pb-2">
-							<img src="{% static 'images/butcher.jpg' %}"
-							     alt="Butcher" width="70">
-						</div>
-
-						<h4 class="font-weight-bolder pt-2">Need a Butcher</h4>
-						<div class="font-size-17 pb-1">
-							Hire a profession butcher at suitable price, choose your time and location.
-						</div>
-
-						<i class="fas fa-arrow-right text-secondary font-size-15"></i>
-
-						<a href="{% url 'orders3:customer_form' %}"
-						   class="btn btn-link">
-							<button type="button" class="btn btn-outline-primary font-size-14">
-								Book Butcher
-							</button>
-						</a>
-
+					<div class="pb-1">
+						<img src="{% static 'images/butcher.jpg' %}"
+						     alt="Butcher" width="70">
 					</div>
+
+					<h4 class="font-weight-bolder pt-2">Need a Butcher</h4>
+					<div class="font-size-17 pb-1">
+						Hire a profession butcher at suitable price, choose your time and location.
+					</div>
+
+					<i class="fas fa-arrow-right text-secondary font-size-15"></i>
+
+					<a href="{% url 'orders3:customer_form' %}"
+					   class="btn btn-link">
+						<button type="button" class="btn btn-outline-primary font-size-14">
+							Book Butcher
+						</button>
+					</a>
 				</div>
 
 				<!-- 2 Partner form -->
 
-				<div class="offset-md-2 col-md-4"> <!--for p & m mt-4 pt-4-->
-					<div class="p-2 m-2"> <!--for p & m mt-4 mb-4-->
+				<div class="offset-md-2 col-md-4 pt-2"> <!--for p & m mt-4 pt-4-->
+					<!--for p & m mt-4 mb-4-->
 
-						<div class="pb-2">
-							<img src="{% static 'images/partner.png' %}"
-							     alt="Partner" width="75">
-						</div>
-
-						<h4 class="font-weight-bolder">Become Partner</h4>
-
-						<div class="font-size-17 pb-1">
-							Grow your orders & reach new customers by partnering with us.
-						</div>
-
-						<i class="fas fa-arrow-right text-secondary font-size-15"></i>
-						<a href="{% url 'orders3:butcher_form' %}" class="btn btn-link">
-							<button type="button" class="btn btn-outline-primary font-size-14">
-								Start Earning
-							</button>
-						</a>
-
-
+					<div class="pb-2">
+						<img src="{% static 'images/partner.png' %}"
+						     alt="Partner" width="70">
 					</div>
+
+					<h4 class="font-weight-bolder">Become Partner</h4>
+
+					<div class="font-size-16 pb-1">
+						Grow your orders & reach new customers by partnering with us.
+					</div>
+
+					<i class="fas fa-arrow-right text-secondary font-size-15"></i>
+					<a href="{% url 'orders3:butcher_form' %}" class="btn btn-link">
+						<button type="button" class="btn btn-outline-primary font-size-14">
+							Start Earning
+						</button>
+					</a>
+
 				</div>
 
 			</div>

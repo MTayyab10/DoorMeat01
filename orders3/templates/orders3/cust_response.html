@@ -31,6 +31,11 @@
 	{#    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>#}
 
 
+		<!--Font Awesome Icons -->
+
+	<script src="https://kit.fontawesome.com/97dffca0dc.js" crossorigin="anonymous"></script>
+
+
 </head>
 
 <body>
@@ -63,16 +68,14 @@
 						<a href="#" class="site-menu-toggle js-menu-toggle py-5"><span
 								class="icon-menu text-secondary h3"></span></a></span>
 
-
 					<nav class="site-navigation text-right ml-auto d-none d-lg-block"
 					     role="navigation">
 
 						<ul class="site-menu main-menu js-clone-nav ml-auto">
 
 							<li><a href="{% url 'home1:index' %}">Home</a></li>
-							<li><a href="#learn-more" class="nav-link">Learn more</a></li>
 							<li><a href="#faq" class="nav-link">FAQ</a></li>
-							<li><a href="" class="nav-link">Help</a></li>
+							<li><a href="{% url 'orders3:support' %}" class="nav-link">Help Centre</a></li>
 
 						</ul>
 
@@ -112,7 +115,7 @@
 								and digit is just random which creates by
 								django -->
 								Your order Id is
-								<strong class="font-size-18 font-weight-bold"
+								<strong class="font-size-18 font-weight-bolder"
 								        style="font-family: sans-sarif;">{{ customer.name | make_list | first | title }}C{{ customer.id }}</strong>
 							</p>
 
@@ -263,16 +266,96 @@
 							{#							    <a class="font-weight-bolder font-size-17" href="{% url 'businessAc:customer_order_update' customer.id %}">#}
 							{#								Change order </a>#}
 
-							<a class="btn btn-outline-success mr-3 font-size-13"
-							   href="{% url 'orders3:cust_order_confirm' customer.id %}">
-								Confirm
-							</a>
+							{#							<a class="btn btn-outline-success mr-3 font-size-13"#}
+							{#							   href="{% url 'orders3:cust_order_confirm' customer.id %}">#}
+							{#								Confirm#}
+							{#							</a>#}
+
+							<!-- Show msg before deleting -->
 
 							<a class="btn btn-outline-danger font-size-13"
-							   title="delete" onclick="return confirm('Are you sure to delete order')"
-							   href="{% url 'orders3:cust_order_delete' customer.id %}">
+							   title="delete" data-toggle="modal" data-target="#myModal1"
+									{#							   onclick="return confirm('Are you sure to delete order')"#}
+                               href="{% url 'orders3:cust_order_delete' customer.id %}">
 								Delete
 							</a>
+
+							<!-- Modal -->
+
+							<div class="modal fade pt-5 mt-5" id="myModal1" role="dialog">
+								<div class="modal-dialog">
+
+									<!-- Modal content-->
+
+
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close font-size-28"
+											        data-dismiss="modal">
+												&times;
+											</button>
+											<!--<h6 class="modal-title">Modal Header</h4>-->
+										</div>
+										{##}
+										<div class="modal-body">
+
+											<div class="col-md-9">
+
+												<h4>Are you sure to delete?</h4>
+
+											</div>
+
+										</div>
+
+										<div class="modal-footer">
+
+											<button type="button" class="btn btn-secondary mr-3"
+											        data-dismiss="modal">
+												Go back
+											</button>
+
+											<a href="{% url 'orders3:cust_order_delete' customer.id %}">
+
+												<button type="submit" class="btn btn-danger">
+													Yes, I'm sure
+												</button>
+
+											</a>
+
+										</div>
+
+									</div>
+
+									{#									<script type="text/javascript">#}
+									{##}
+									{#                                        $(document).on('submit', '#coupon_form', function (e) {#}
+									{#                                            e.preventDefault();#}
+									{##}
+									{#                                            $.ajax({#}
+									{#                                                type: 'POST',#}
+									{#url: url,#}
+									{##}
+									{#url: 'c/response/<customer.id>',#}
+									{##}
+									{#                                                url: "{% url 'orders3:cust_response' customer.id %}",#}
+									{#                                                data: {#}
+									{#                                                    coupon: $('#coupon').val(),#}
+									{#                                                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()#}
+									{#                                                },#}
+									{##}
+									{#                                                success: function () {#}
+									{#                                                    document.querySelector('#coupon_info').innerHTML = "Coupon is submitted";#}
+									{##}
+									{#                                                }#}
+									{##}
+									{#                                            });#}
+									{#                                        });#}
+									{##}
+									{#									</script>#}
+
+								</div>
+							</div>
+
 
 						</div>
 
@@ -335,7 +418,7 @@
 								<!-- 4 Discount coupon -->
 
 
-{#								{% if coupon %}#}
+								{% if coupon %}
 
 									<div class="row pt-1">
 										<div class="col">
@@ -350,7 +433,7 @@
 
 									</div>
 
-{#								{% endif %}#}
+								{% endif %}
 
 								<!-- 5 total -->
 
@@ -380,20 +463,12 @@
 
 										<!-- Modal content-->
 
-										{#										<form id="coupon_form">#}
-										{##}
-										{#											<input type="text" name="surname" placeholder="Enter Coupon Code">#}
-										{#											<input type="submit">#}
-										{#										</form>#}
-										{##}
-
-
 
 										<form method="POST"
-											 action="{% url 'orders3:cust_response' customer.id %}"
-                                              id="coupon_form" class="row g-3 needs-validation">
+										      action="{% url 'orders3:cust_response' customer.id %}"
+										      id="coupon_form" class="row g-3 needs-validation">
 
-										      {% csrf_token %}
+											{% csrf_token %}
 
 											<div class="modal-content">
 												<div class="modal-header">
@@ -407,7 +482,6 @@
 												<div class="modal-body">
 
 													<div class="col-md-9">
-
 														<input type="text" id="coupon"
 														       class="form-control" value="{{ coupon_valid.coupon }}"
 														       placeholder="Enter coupon code"
@@ -420,39 +494,36 @@
 												</div>
 
 												<div class="modal-footer">
-
 													<button type="button" class="btn btn-secondary"
 													        data-dismiss="modal">
 														Close
 													</button>
-{#													<input type="submit" class="btn btn-primary">#}
+
 													<button type="submit" class="btn btn-primary">
 														Submit
 													</button>
-{#													<div class="spinner-border text-primary" role="status">#}
-{#														<span class="visually-hidden">Loading...</span>#}
-{#													</div>#}
+
 												</div>
 
 											</div>
 
 										</form>
 
-									    <script type="text/javascript">
+										<script type="text/javascript">
 
-                                            $(document).on('submit', '#coupon_form', function(e){
+                                            $(document).on('submit', '#coupon_form', function (e) {
                                                 e.preventDefault();
 
                                                 $.ajax({
                                                     type: 'POST',
-	                                                {#url: url,#}
+                                                    {#url: url,#}
 
-	                                                {#url: 'c/response/<customer.id>',#}
+                                                    {#url: 'c/response/<customer.id>',#}
 
-	                                                url: "{% url 'orders3:cust_response' customer.id %}",
+                                                    url: "{% url 'orders3:cust_response' customer.id %}",
                                                     data: {
                                                         coupon: $('#coupon').val(),
-	                                                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                                                        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
                                                     },
 
                                                     success: function () {
@@ -483,23 +554,17 @@
 
 						</div>
 
+					<!-- End of Order Payment Section -->
 
-						<!-- End of Order Payment Section -->
-
-
-
-
-						{#							<div class="pt-3 pb-2">#}
-						{#								<h3 class="font-weight-bolder text-black">Payment</h3>#}
-						{#							    <p class="lead">after payment your order will confirmed</p>#}
-						{#							</div>#}
 
 					{% else %}
 
 						<div class="">
 							<h2 class="text-left font-weight-bolder">Note:</h2>
-							<p class="lead">You must need to <a href="{% url 'accounts2:signin' %}"> login </a> for
-								accessing this page. Thanks</p>
+							<p class="lead">You must need to
+								<a href="{% url 'accounts2:signin' %}"> login </a>
+								for	accessing this page. Thanks
+							</p>
 						</div>
 
 					{% endif %}
@@ -507,7 +572,135 @@
 
 			</div>
 		</div>
+
 	</div>
+
+
+    <!-- FAQs -->
+
+	<div class="site-section" id="faq">
+		<div class="container ">
+			<div class="row justify-content-center">
+				<div class="col-lg-10">
+
+					<div class="pb-2 mb-2">
+						<h3 class="font-weight-bold text-center">
+							<i class="fas fa-question-circle mr-2"></i>
+							Frequently Asked Questions
+						</h3>
+					</div>
+
+					<div id="accordion">
+
+						<div class="card">
+							<div class="card-header" id="headingTwo">
+								<h5 class="mb-0">
+									<button class="btn btn-link collapsed font-size-18" data-toggle="collapse"
+									        data-target="#collapseTwo" aria-expanded="false"
+									        aria-controls="collapseTwo">
+										When will my order confirm?
+									</button>
+								</h5>
+							</div>
+							<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+							     data-parent="#accordion">
+								<div class="card-body font-size-17">
+									After paying payment your order will 100% confirm. If you wanna make a order with cash then
+									you need to give us prove that your order is real by giving us some more info. Visit
+									<a href="{% url 'orders3:support' %}" >Help Centre</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="card">
+							<div class="card-header" id="headingOne">
+								<h5 class="mb-0">
+									<button class="btn btn-link collapsed font-size-18" data-toggle="collapse"
+									        data-target="#collapseOne" aria-expanded="false"
+									        aria-controls="collapseOne">
+										When & how can I change my order?
+									</button>
+								</h5>
+							</div>
+							<div id="collapseOne" class="collapse" aria-labelledby="headingTwo"
+							     data-parent="#accordion">
+								<div class="card-body font-size-17">
+									Yes, you can change but only before payment.
+									For changing order just click on the change button
+									and update order.
+								</div>
+							</div>
+						</div>
+
+						<div class="card">
+							<div class="card-header" id="headingThree">
+								<h5 class="mb-0">
+									<button class="btn btn-link collapsed font-size-18" data-toggle="collapse"
+									        data-target="#collapseThree" aria-expanded="false"
+									        aria-controls="collapseThree">
+										What If after payment I want to change order?
+									</button>
+								</h5>
+							</div>
+							<div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+							     data-parent="#accordion">
+								<div class="card-body font-size-17">
+
+									We always prefer that check your order before doing
+									payment. If after payment you wanna change, contact our
+									<a href="{% url 'orders3:support' %}">Help Centre</a>
+
+								</div>
+							</div>
+						</div>
+
+						<div class="card">
+							<div class="card-header" id="headingFour">
+								<h5 class="mb-0">
+									<button class="btn btn-link collapsed font-size-18" data-toggle="collapse"
+									        data-target="#collapseFour" aria-expanded="false"
+									        aria-controls="collapseFour">
+										How can I do cancel order after payment?
+									</button>
+								</h5>
+							</div>
+							<div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+							     data-parent="#accordion">
+								<div class="card-body font-size-17">
+									We always prefer that check your order before doing
+									payment. If after payment you wanna Cancel Order, contact our
+									<a href="{% url 'orders3:support' %}">Help Centre</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="card">
+							<div class="card-header" id="headingFive">
+								<h5 class="mb-0">
+									<button class="btn btn-link collapsed font-size-18" data-toggle="collapse"
+									        data-target="#collapseFive" aria-expanded="false"
+									        aria-controls="collapseFive">
+										Where I can get help and more info?
+									</button>
+								</h5>
+							</div>
+							<div id="collapseFive" class="collapse" aria-labelledby="headingFive"
+							     data-parent="#accordion">
+								<div class="card-body font-size-17">
+									We do our best to provide you with all the help you may need in our FAQs.
+									If you need to get in touch with us, you can just click
+									<a href="{% url 'orders3:support' %}">Help Centre</a>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- End of FAQs -->
 
 </div>
 
@@ -526,7 +719,6 @@
 
 <script src="{% static 'js/main.js' %}"></script>
 
-</div>
 </body>
 
 </html>
