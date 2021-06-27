@@ -46,16 +46,23 @@ def customer_form(request):
     # specific customer
     one_customer = Customer.objects.filter(name=request.user.username)
 
+    # total or all customers in Customer model
+    customers = Customer.objects.all()
+
     # total customers
-    all_customers = Customer.objects.count()
+    count_customers = Customer.objects.count()
+    # for c in customers:
+    #     print(c.animal.count() > 1)
 
     # check - if user is already fill Butcher form
     check_butcher = Butcher.objects.filter(name=request.user.username).exists()
 
     return render(request, 'orders3/customer_form.html', {
         'one_customer': one_customer,
-        'all_customers': all_customers,
-        'check_butcher': check_butcher
+        'customers': customers,
+        'count_customers': count_customers,
+        'check_butcher': check_butcher,
+
     })
 
 

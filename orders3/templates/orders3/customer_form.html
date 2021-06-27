@@ -30,6 +30,8 @@
 
 	<script src="https://kit.fontawesome.com/97dffca0dc.js" crossorigin="anonymous"></script>
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 	<style>
 
         .anmte .sd:before {
@@ -144,20 +146,32 @@
 		<div class="container">
 			<!-- if user will login then
             it can access the form -->
-			{% if user.is_authenticated %}
+			{% if request.user.is_authenticated %}
 
-				{% for c in one_customer %}
-					{% if c.name in request.user.username %}
+				<!-- if cust have order then just show
+				otherwise no -->
 
-						<div class="text-center">
-							<h3 class="font-weight-bolder p-1">
-								<a> <!-- href="{% url 'accounts2:edit_profile' %}" -->
-									{{ user.username }}
-								</a>
-								Orders
-							</h3>
-						</div>
+				{% if one_customer %}
 
+					<div class="text-center">
+						<h3 class="font-weight-bolder p-1">
+							<a> <!-- href="{% url 'accounts2:edit_profile' %}" -->
+								{{ user.username }}
+							</a>
+							Orders
+						</h3>
+					</div>
+				{% endif %}
+
+				<!-- check how much orders
+				 a customer have in total_customer
+				 -->
+
+				{% for c in customers %}
+
+					{% if c.name == request.user.username %}
+
+						<!-- for order details-->
 
 						<div class="">
 							<ul>
@@ -172,101 +186,266 @@
 							</ul>
 						</div>
 
-
-						{##}
-						{#						<table class="table table-bordered border-primary">#}
-						{##}
-						{#							<tr>#}
-						{#								<th>Town</th>#}
-						{#								<th>Anml</th>#}
-						{#								<th>Qty</th>#}
-						{#								<th>Time</th>#}
-						{#								<th>Addr</th>#}
-						{#							</tr>#}
-						{#							<tr>#}
-						{#								<td>{{ c.animal }}</td>#}
-						{#								<td>{{ c.quantity }}</td>#}
-						{#								<td>{{ c.time }}</td>#}
-						{#								<td>{{ c.town }}, {{ c.city }} </td>#}
-						{#							</tr>#}
-						{#						</table>#}
-						{#						<div class="pt-3">#}
-						{#							<a class="btn btn-outline-info mr-3 font-size-13"#}
-						{#							   href="{% url 'orders3:cust_response' c.id %}">#}
-						{#								Status#}
-						{#							</a>#}
-						{#	   <a href="{% url 'businessAc:order_info' c.id %}">Order ssd</a>#}
-						{#							<a class="btn btn-outline-dark mr-3 font-size-13"#}
-						{#							   href="{% url 'orders3:cust_order_update' c.id %}">#}
-						{#								Change#}
-						{#							</a>#}
-						{#							<a class="btn btn-outline-danger font-size-13"#}
-						{#							   href="{% url 'orders3:cust_order_delete' c.id %}">#}
-						{#								Delete#}
-						{#							</a>#}
-						{#						</div>#}
-
 					{% endif %}
 
-				{% empty %}
+				{% endfor %}
 
-					<!-- check this user is exist in Butcher -->
+				{#				{% empty %}#}
 
-					{% if check_butcher %}
+				<!-- check this user is exist in Butcher -->
 
-						<div class="offset-md-1 col-md-4 pb-2">
+				{% if check_butcher %}
 
-							<h4 class="text-left font-weight-bolder">Oops!</h4>
+					<div class="offset-md-1 col-md-4 pb-2">
+
+						<h4 class="text-left font-weight-bolder">Oops!</h4>
+					</div>
+
+					<div class="text-center pb-2">
+
+						<h4 class="font-weight-bolder">You already fill a Butcher Form</h4>
+						<p class="font-weight-bolder font-size-17">Do you want to book butcher &quest;</p>
+					</div>
+
+					<div class="offset-md-1 col-md-4">
+						<h3 class="font-weight-bolder text-danger text-left">Note:</h3>
+					</div>
+					<div class="offset-md-2 col-md-8">
+
+						<p class="font-size-17">
+							Here is your details
+							of <a class="font-weight-bolder" href="{% url 'orders3:butcher_form' %}">Butcher
+							Form</a>.
+						</p>
+						<p>
+							If by mistake or other reason you signup as Butcher and now
+							wanna make a <b> customer account </b> then click above on the butcher account and
+							delete and then signup as a Customer.
+						</p>
+
+
+						<p class="lead font-weight-bolder">Still have question or need help &quest;
+							<a href="#faq">FAQs</a> or
+							<a href="{% url 'orders3:support' %}">Help</a>
+						</p>
+
+					</div>
+
+				{% else %}
+
+					<!-- check the total customers  -->
+
+					{% if count_customers != 20 %}
+
+						<!-- Order if user do not already have
+                         order and logged in -->
+
+						<div class="text-center pb-1">
+							<h2 class="font-weight-bolder font-weight-bold"><a
+									href="{% url 'accounts2:edit_profile' %}">{{ user.username }}</a> book Butcher
+							</h2>
+							<p class="font-size-17">hire best butcher, when you want</p>
 						</div>
 
-						<div class="text-center pb-2">
+						<!-- check if customer have order
+						if yes, then show just
+						Wanna make a new order? -->
 
-							<h4 class="font-weight-bolder">You already fill a Butcher Form</h4>
-							<p class="font-weight-bolder font-size-17">Do you want to book butcher &quest;</p>
-						</div>
+						{% if one_customer %}
+
+							<div id="form1" style="display:none">
+								<form action="{% url 'orders3:customer_form' %}" method="post"
+
+								      class="row g-3 needs-validation"
+								      novalidate>
+
+									{% csrf_token %}
+
+									<!-- name:  do not show name -->
+
+									<div style="display: none" class="col-md-4">
+										<label for="name" class="form-label">Name</label><br>
+										<input type="text" name="name" class="form-control"
+										       value="{{ request.user.username }}" id="name" required>
+										<div class="invalid-feedback">
+											Please provide name.
+										</div>
+									</div>
+
+									<!-- 1 Phone number -->
+
+									<div class="col-md-4">
+										<label for="mobile" class="form-label">Mobile</label>
+										<input type="tel" name="mobile" pattern="[0-9]{11}" class="form-control"
+										       id="mobile"
+										       required>
+										<div class="invalid-feedback">
+											Please provide a valid number.
+										</div>
+									</div>
+
+									<!-- 2 city -->
+
+									<div class="col-md-4">
+
+										<label for="city" class="form-label">City</label>
+										<select class="form-select" name="city" id="city" required>
+											<option selected disabled value="">Select city</option>
+											<option>Lahore</option>
+											<option>Gujranwala</option>
+										</select>
+
+										<div class="invalid-feedback">
+											Please select a city.
+										</div>
+									</div>
+
+									<!-- 3 town/street -->
+
+									<div class="col-md-4">
+										<label for="town" class="form-label">Town</label>
+										<input type="text" name="town" placeholder="town, street" class="form-control"
+										       id="town" required>
+										<div class="invalid-feedback">
+											Please provide a valid address.
+										</div>
+									</div>
+
+									<!-- 4 animal type -->
+
+									<div class="col-md-4">
+
+										<label for="animal" class="form-label">Animal</label>
+										<select class="form-select" name="animal" id="animal" required>
+											<option selected disabled value="">Choose type</option>
+											<option>Goat/sheep (bakra, etc)</option>
+											<option>Cow/buffalo (gai)</option>
+											<option>Camel (ont)</option>
+										</select>
+
+										<div class="invalid-feedback">
+											Please select animal type.
+										</div>
+									</div>
+
+									<!-- 5 Quantity  -->
+
+									<div class="col-md-4">
+
+										<label for="quantity" class="form-label">Quantity</label>
+										<select class="form-select" name="quantity" id="quantity" required>
+
+											<option selected disabled value="">Select quantity</option>
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option>5</option>
+
+										</select>
+
+										<div class="invalid-feedback">
+											Please select quantity.
+										</div>
+									</div>
+
+									<!-- 6 Time  -->
+
+									<div class="col-md-4">
+
+										<label for="time" class="form-label">Time</label>
+										<select class="form-select" name="time" id="time" required>
+											<option selected disabled value="">Choose time</option>
+											<option class="text-danger">first day b/w 8am to 10</option>
+											<option class="text-danger">first day b/w 10 to 1pm</option>
+											<option class="text-danger">first day b/w 1pm to 5</option>
+											<option class="text-danger">first day b/w 5pm to 8</option>
+											<option class="text-success">second day b/w 8am to 12</option>
+											<option class="text-success">second day b/w 1pm to 5pm</option>
+											<option class="text-info">third day - any time is available</option>
+											<option>any day</option>
+
+										</select>
 
 
-						<div class="offset-md-1 col-md-4">
-							<h3 class="font-weight-bolder text-danger text-left">Note:</h3>
-						</div>
-						<div class="offset-md-2 col-md-8">
+										{#									<input type="date" id="start" name="trip-start"#}
+										{#									       value="2021-09-01"#}
+										{#									       min="2021-09-01" max="2021-09-17">#}
+										{##}
+										{#									<input type="time" id="appt" name="appt"#}
+										{#									       value="13:30" step="60" min="12:00" max="18:00" required>#}
 
-							<p class="font-size-17">
-								Here is your details
-								of <a class="font-weight-bolder" href="{% url 'orders3:butcher_form' %}">Butcher
-								Form</a>.
-							</p>
-							<p>
-								If by mistake or other reason you signup as Butcher and now
-								wanna make a <b> customer account </b> then click above on the butcher account and
-								delete and then signup as a Customer.
-							</p>
+										<div class="invalid-feedback">
+											Please choose time.
+										</div>
+									</div>
 
+									<!-- 7 heard -->
 
-							<p class="lead font-weight-bolder">Still have question or need help &quest;
-								<a href="#faq">FAQs</a> or
-								<a href="{% url 'orders3:support' %}">Help</a>
-							</p>
+									<div class="col-md-4">
 
-						</div>
+										<label for="heard" class="form-label">How did you hear about us?</label>
+										<select class="form-select" name="heard" id="heard" required>
+											<option selected disabled value="">Choose...</option>
+											{#										<option>Facebook</option>#}
+											<option>Flyers</option>
+											<option>Peoples</option>
+											<option>Other</option>
 
-					{% else %}
+										</select>
 
-						<!-- check the total customers  -->
+										<div class="invalid-feedback">
+											Please select a option.
+										</div>
+									</div>
 
-						{% if all_customers != 20  %}
+									<!-- terms and conditions -->
 
-							<!-- Order if user do not already have
-                             order and logged in -->
+									<div class="col-12 ml-2">
+										<div class="form-check pr-2 pt-2">
+											<input class="form-check-input" type="checkbox" id="invalidCheck" required>
+											<label class="form-check-label" for="invalidCheck">
+												I agree to terms &amp; conditions of company.
+											</label>
+											<div class="invalid-feedback">
+												You must agree before submitting.
+											</div>
+										</div>
+									</div>
 
-							<div class="text-center pb-1">
-								<h2 class="font-weight-bolder font-weight-bold"><a
-										href="{% url 'accounts2:edit_profile' %}">{{ user.username }}</a> book Butcher
-								</h2>
-								<p class="font-size-17">hire best butcher, when you want</p>
+									<!-- Submit form -->
+
+									<div class="col-12">
+
+										<button class="btn btn-primary" type="submit">
+											Submit
+										</button>
+
+									</div>
+
+								</form>
 							</div>
+							<script type="text/javascript">
+                                $(document).ready(function () {
+                                    $("#formButton").click(function () {
+                                        $("#form1").toggle();
+                                    });
+                                });
 
+							</script>
+							<div>
+								Want to make a new order?
+								<button type="button" id="formButton" class="btn btn-outline-dark btn-sm ml-3">New order
+								</button>
+							</div>
+							<!-- End of show just
+                            Wanna make a new order? -->
+
+						{% else %}
+							<!-- if customer already don't have any order
+							show this form -->
 							<form action="{% url 'orders3:customer_form' %}" method="post"
+
 							      class="row g-3 needs-validation"
 							      novalidate>
 
@@ -432,30 +611,31 @@
 									</button>
 
 								</div>
+
 							</form>
-
-
-						{% else %}
-
-							<!-- if customers are fulled -->
-
-							<div class="text-center pb-3">
-								<h2 class="font-weight-bolder text-danger">
-									Sorry, Booking of Orders is closed for this year now.
-								</h2>
-							</div>
-							<div class="text-center">
-								<p class="lead">We've got enough orders already.
-									Next year you can book early.
-									Stay tuned for more info. Eid Mubarak</p>
-							</div>
-
-							<!-- End of if customers are fulled -->
 						{% endif %}
 
+					{% else %}
+
+						<!-- if customers are fulled -->
+
+						<div class="text-center pb-3">
+							<h2 class="font-weight-bolder text-danger">
+								Sorry, Booking of Orders is closed for this year now.
+							</h2>
+						</div>
+						<div class="text-center">
+							<p class="lead">We've got enough orders already.
+								Next year you can book early.
+								Stay tuned for more info. Eid Mubarak</p>
+						</div>
+
+						<!-- End of if customers are fulled -->
 					{% endif %}
 
-				{% endfor %}
+				{% endif %}
+
+				{#				{% endfor %}#}
 
 			{% else %}
 
@@ -467,9 +647,9 @@
 				<div class="text-center">
 					<p class="font-size-19">Before booking with us you need to
 						{#							href="{% url 'accounts:register' %}">register</a>#}
-						<a href="{% url 'accounts2:signin' %}?next={{request.path}}">Login</a>
+						<a href="{% url 'accounts2:signin' %}?next={{ request.path }}">Login</a>
 
-{#						<a class="font-weight-bolder" href="{% url 'accounts2:signin' %}">Login</a> #}
+						{#						<a class="font-weight-bolder" href="{% url 'accounts2:signin' %}">Login</a> #}
 						it will take few seconds.
 					</p>
 				</div>
