@@ -177,18 +177,21 @@
 								</div>
 							</li>
 
-							{% if user.is_authenticated %}
+							{% if request.user.is_authenticated %}
 
 								<li><a href="{% url 'accounts2:edit_profile' %}"
-								       class="font-weight-bolder nav-link">Hi, {{ user.username.title }}</a></li>
+								       class="font-weight-bolder nav-link">
+									Hi, {{ user.username.title }}
+								</a></li>
 
-								{% for c in customer %}
-									{% if c.name == user.username %}
+								<!-- Check if customer order is 1 or more
+								 just then show my orders navbar   -->
 
-										<li><a href="{% url 'orders3:cust_response' c.id %}">My Order</a></li>
+								{% if customer_orders >= 1 %}
 
-									{% endif %}
-								{% endfor %}
+									<li><a href="{% url 'orders3:customer_form' %}">My Order</a></li>
+
+								{% endif %}
 
 								<li><a href="{% url 'accounts2:logout' %}" class="nav-link">Logout</a></li>
 

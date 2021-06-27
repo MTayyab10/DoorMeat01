@@ -6,12 +6,15 @@ from orders3.models import Customer
 
 def index(request):
 
+    customers = Customer.objects.all()
     # customer for checking is it have
     # in Customer form or not, MyOrder
-    customer = Customer.objects.all()
+    customer_orders = Customer.objects.filter(name=request.user.username).count()
+    print(customer_orders)
 
     return render(request, 'home1/index.html', {
-        'customer': customer
+        'customers': customers,
+        'customer_orders': customer_orders
     })
 
 

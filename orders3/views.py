@@ -49,7 +49,7 @@ def customer_form(request):
     # total or all customers in Customer model
     customers = Customer.objects.all()
 
-    # total customers
+    # count/total customers
     count_customers = Customer.objects.count()
     # for c in customers:
     #     print(c.animal.count() > 1)

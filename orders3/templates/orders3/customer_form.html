@@ -76,8 +76,8 @@
 			<div class="row align-items-center position-relative">
 
 				<div class="col-3">
-					<div class="site-logo">
-						<a href="{% url 'home1:index' %}"><strong>DoorMeat</strong></a>
+					<div class="site-logo font-weight-bolder">
+						<a href="{% url 'home1:index' %}">DoorMeat</a>
 					</div>
 				</div>
 
@@ -176,7 +176,7 @@
 						<div class="">
 							<ul>
 								<li>
-									Click here for more details about order <a
+									Check for details about order <a
 										class="btn btn-outline-info ml-3 font-size-13"
 										href="{% url 'orders3:cust_response' c.id %}">
 									{{ c.name | make_list | first | title }}C{{ c.id }}
@@ -241,10 +241,16 @@
                          order and logged in -->
 
 						<div class="text-center pb-1">
-							<h2 class="font-weight-bolder font-weight-bold"><a
-									href="{% url 'accounts2:edit_profile' %}">{{ user.username }}</a> book Butcher
-							</h2>
-							<p class="font-size-17">hire best butcher, when you want</p>
+							<!-- check if customer have order
+                            then show different headings --->
+							{% if not one_customer %}
+								<h2 class="font-weight-bolder font-weight-bold"><a
+										href="{% url 'accounts2:edit_profile' %}">{{ user.username }}</a> book Butcher
+								</h2>
+								<p class="font-size-16">hire best butcher, when you want</p>
+							{% else %}
+								<h3 class="font-weight-bolder">Place a New Order</h3>
+							{% endif %}
 						</div>
 
 						<!-- check if customer have order
@@ -433,11 +439,14 @@
                                 });
 
 							</script>
-							<div>
-								Want to make a new order?
-								<button type="button" id="formButton" class="btn btn-outline-dark btn-sm ml-3">New order
-								</button>
-							</div>
+							<ul class="pt-3">
+								<li>
+									Want to make a new order?
+									<button type="button" id="formButton" class="btn btn-outline-dark btn-sm ml-3">New
+										order
+									</button>
+								</li>
+							</ul>
 							<!-- End of show just
                             Wanna make a new order? -->
 
