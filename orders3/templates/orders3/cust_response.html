@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-	<title>Book Butcher</title>
+	<title>Order Info</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -31,7 +31,7 @@
 	{#    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>#}
 
 
-		<!--Font Awesome Icons -->
+	<!--Font Awesome Icons -->
 
 	<script src="https://kit.fontawesome.com/97dffca0dc.js" crossorigin="anonymous"></script>
 
@@ -109,7 +109,8 @@
 						<div class="text-center">
 
 							{#							<h4 class="text-success font-weight-bold pt-3">Thank you for your interest!</h4>#}
-							<p class="font-size-17">Below is your order information.
+							<p class="font-size-17">
+								Below is your order information.
 								{#								Shortly we will talk to you with email/call.#}
 
 								<!-- first digit of name and C shows customer
@@ -117,7 +118,12 @@
 								django -->
 								Your order Id is
 								<strong class="font-size-18 font-weight-bolder"
-								        style="font-family: sans-sarif;">{{ customer.name | make_list | first | title }}C{{ customer.id }}</strong>
+								        style="font-family: sans-sarif;">
+									{{ customer.name | make_list | first | title }}C{{ customer.id }}
+
+								</strong>
+								Order time is <span
+									style="font-family: 'Roboto', sans-serif">{{ customer.date_order }}</span>
 							</p>
 
 						</div>
@@ -156,40 +162,6 @@
 						</div>
 
 						<!-- End of Order Info -->
-
-
-						{#						<div class="alert alert-success" role="alert">#}
-						{#							<h4 class="alert-heading">Well Done!</h4>#}
-						{#							<p>Aww yeah, you successfully read this important alert message. This example text is going#}
-						{#								to run a bit longer so that you can see how spacing within an alert works with this kind#}
-						{#								of content.</p>#}
-						{#							<div class="p-1">#}
-						{#							<table class="table table-bordered">#}
-						{##}
-						{#								<tr>#}
-						{#									<th>Order Id</th>#}
-						{#									<th>Anml</th>#}
-						{#									<th>Qty</th>#}
-						{#									<th>Time</th>#}
-						{#									<th>Addr</th>#}
-						{#								</tr>#}
-						{#								<tr>#}
-						{#									<!-- name is str cannot do#}
-						{#									slice so first convert it in list#}
-						{#									then got 1 char by calling first -->#}
-						{#									<td>{{ customer.name | make_list | first | title }}{{ customer.id }}</td>#}
-						{#									<td>{{ customer.animal }}</td>#}
-						{#									<td>{{ customer.quantity }}</td>#}
-						{#									<td>{{ customer.time }}</td>#}
-						{#									<td>{{ customer.town }}, {{ customer.city }}</td>#}
-						{#								</tr>#}
-						{#							</table>#}
-						{#						</div>#}
-						{#							<hr>#}
-						{#							<p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice#}
-						{#								and tidy.</p>#}
-						{#						</div>#}
-
 
 						<!-- just let know user that form
                          is updated simple -->
@@ -260,7 +232,7 @@
 						<!-- change, delete etc buttons -->
 
 						<div class="pt-1 pb-2">
-							<a class="btn btn-outline-secondary mr-3 font-size-13"
+							<a class="btn btn-secondary mr-3 font-size-13"
 							   href="{% url 'orders3:cust_order_update' customer.id %}">
 								Change
 							</a>
@@ -274,8 +246,9 @@
 
 							<!-- Show msg before deleting -->
 
-							<a class="btn btn-outline-danger font-size-13"
-							   title="delete" data-toggle="modal" data-target="#myModal1"
+							<a class="btn btn-danger font-size-13"
+							   title="delete" data-toggle="modal"
+							   data-target="#myModal1"
 									{#							   onclick="return confirm('Are you sure to delete order')"#}
                                href="{% url 'orders3:cust_order_delete' customer.id %}">
 								Delete
@@ -287,7 +260,6 @@
 								<div class="modal-dialog">
 
 									<!-- Modal content-->
-
 
 									<div class="modal-content">
 										<div class="modal-header">
@@ -301,23 +273,21 @@
 										<div class="modal-body">
 
 											<div class="col-md-9">
-
 												<h4>Are you sure to delete?</h4>
-
 											</div>
 
 										</div>
 
 										<div class="modal-footer">
 
-											<button type="button" class="btn btn-secondary mr-3"
+											<button type="button" class="btn btn-outline-secondary mr-3"
 											        data-dismiss="modal">
 												Go back
 											</button>
 
 											<a href="{% url 'orders3:cust_order_delete' customer.id %}">
 
-												<button type="submit" class="btn btn-danger">
+												<button type="submit" class="btn btn-outline-danger">
 													Yes, I'm sure
 												</button>
 
@@ -356,7 +326,6 @@
 
 								</div>
 							</div>
-
 
 						</div>
 
@@ -418,7 +387,6 @@
 
 								<!-- 4 Discount coupon -->
 
-
 								{% if coupon %}
 
 									<div class="row pt-1">
@@ -464,7 +432,6 @@
 
 										<!-- Modal content-->
 
-
 										<form method="POST"
 										      action="{% url 'orders3:cust_response' customer.id %}"
 										      id="coupon_form" class="row g-3 needs-validation">
@@ -501,7 +468,7 @@
 													</button>
 
 													<button type="submit" class="btn btn-primary">
-														Submit
+														Apply
 													</button>
 
 												</div>
@@ -528,10 +495,9 @@
                                                     },
 
                                                     success: function () {
-                                                        document.querySelector('#coupon_info').innerHTML = "Coupon is submitted";
+                                                        document.querySelector('#coupon_info').innerHTML = "Invalid Coupon";
 
                                                     }
-
                                                 });
                                             });
 
@@ -540,22 +506,15 @@
 									</div>
 								</div>
 
-
 								<a href="#" class="btn btn-primary">Place Oder Now</a>
-								<script>
-                                    let time = Date();
-                                    let time2 = new Date();
-                                    let total_time = time2.getMonth() + 1;
-                                    let total_time2 = time2.getDate();
+								<br/>
+								<p id="date-time" style="font-family: sans-serif;"></p>
 
-                                    document.write(time2.toDateString())
-                                    {#document.write(time2.toString())#}
-								</script>
 							</div>
 
 						</div>
 
-					<!-- End of Order Payment Section -->
+						<!-- End of Order Payment Section -->
 
 
 					{% else %}
@@ -564,7 +523,7 @@
 							<h2 class="text-left font-weight-bolder">Note:</h2>
 							<p class="lead">You must need to
 								<a href="{% url 'accounts2:signin' %}"> login </a>
-								for	accessing this page. Thanks
+								for accessing this page. Thanks
 							</p>
 						</div>
 
@@ -577,7 +536,7 @@
 	</div>
 
 
-    <!-- FAQs -->
+	<!-- FAQs -->
 
 	<div class="site-section" id="faq">
 		<div class="container ">
@@ -606,9 +565,10 @@
 							<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 							     data-parent="#accordion">
 								<div class="card-body font-size-17">
-									After paying payment your order will 100% confirm. If you wanna make a order with cash then
+									After paying payment your order will 100% confirm. If you wanna make a order with
+									cash then
 									you need to give us prove that your order is real by giving us some more info. Visit
-									<a href="{% url 'orders3:support' %}" >Help Centre</a>
+									<a href="{% url 'orders3:support' %}">Help Centre</a>
 								</div>
 							</div>
 						</div>

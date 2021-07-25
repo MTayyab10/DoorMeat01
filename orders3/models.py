@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 
 class Customer(models.Model):
@@ -10,6 +11,7 @@ class Customer(models.Model):
     animal = models.CharField(max_length=64)
     quantity = models.CharField(max_length=10)
     time = models.CharField(max_length=80)
+    date_order = models.DateTimeField(default=datetime.now ,blank=True)
     heard = models.CharField(max_length=64, blank=True)
 
     def __str__(self):

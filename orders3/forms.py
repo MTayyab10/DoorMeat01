@@ -27,7 +27,7 @@ class ButcherChangeForm(forms.ModelForm):
         fields = [
             'mobile',
             'city', 'town',
-            'experience',
-            'speciality', 'time',
+            'speciality',
+            'experience', 'time',
             'price', 'heard',
         ]

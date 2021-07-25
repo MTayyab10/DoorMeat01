@@ -76,8 +76,10 @@
 			<div class="row align-items-center position-relative">
 
 				<div class="col-3">
-					<div class="site-logo font-weight-bolder">
-						<a href="{% url 'home1:index' %}">DoorMeat</a>
+					<div class="site-logo ">
+						<a href="{% url 'home1:index' %}" class="font-weight-bold">
+							DoorMeat
+						</a>
 					</div>
 				</div>
 
@@ -142,8 +144,8 @@
 
 	<!-- Customer form -->
 
-	<div class="site-section" id="form">
-		<div class="container">
+	<div class="site-section" id="form" >
+		<div class="container" id="join">
 			<!-- if user will login then
             it can access the form -->
 			{% if request.user.is_authenticated %}
@@ -176,11 +178,14 @@
 						<div class="">
 							<ul>
 								<li>
-									Check for details about order <a
-										class="btn btn-outline-info ml-3 font-size-13"
-										href="{% url 'orders3:cust_response' c.id %}">
+									Your Order I'd is
 									{{ c.name | make_list | first | title }}C{{ c.id }}
-								</a>
+									Order place date time is {{ c.date_order }}
+									<a
+											class="btn btn-outline-info ml-3 font-size-13"
+											href="{% url 'orders3:cust_response' c.id %}">
+										{{ c.name | make_list | first | title }}C{{ c.id }}
+									</a>
 								</li>
 
 							</ul>
@@ -190,7 +195,7 @@
 
 				{% endfor %}
 
-				{#				{% empty %}#}
+				{#	% empty %}#}
 
 				<!-- check this user is exist in Butcher -->
 
@@ -202,7 +207,6 @@
 					</div>
 
 					<div class="text-center pb-2">
-
 						<h4 class="font-weight-bolder">You already fill a Butcher Form</h4>
 						<p class="font-weight-bolder font-size-17">Do you want to book butcher &quest;</p>
 					</div>
@@ -447,8 +451,7 @@
 									</button>
 								</li>
 							</ul>
-							<!-- End of show just
-                            Wanna make a new order? -->
+							<!-- End of show just  Wanna make a new order? -->
 
 						{% else %}
 							<!-- if customer already don't have any order
@@ -529,17 +532,14 @@
 								<!-- 5 Quantity  -->
 
 								<div class="col-md-4">
-
 									<label for="quantity" class="form-label">Quantity</label>
 									<select class="form-select" name="quantity" id="quantity" required>
-
 										<option selected disabled value="">Select quantity</option>
 										<option>1</option>
 										<option>2</option>
 										<option>3</option>
 										<option>4</option>
 										<option>5</option>
-
 									</select>
 
 									<div class="invalid-feedback">
@@ -547,10 +547,9 @@
 									</div>
 								</div>
 
-								<!-- 6 Time  -->
+								<!-- 6 Time -->
 
 								<div class="col-md-4">
-
 									<label for="time" class="form-label">Time</label>
 									<select class="form-select" name="time" id="time" required>
 										<option selected disabled value="">Choose time</option>
@@ -559,19 +558,19 @@
 										<option class="text-danger">first day b/w 1pm to 5</option>
 										<option class="text-danger">first day b/w 5pm to 8</option>
 										<option class="text-success">second day b/w 8am to 12</option>
+
 										<option class="text-success">second day b/w 1pm to 5pm</option>
 										<option class="text-info">third day - any time is available</option>
 										<option>any day</option>
 
 									</select>
 
-
-									{#									<input type="date" id="start" name="trip-start"#}
-									{#									       value="2021-09-01"#}
+									{#		<input type="date" id="start" name="trip-start"#}
+									{#	       value="2021-09-01"#}
 									{#									       min="2021-09-01" max="2021-09-17">#}
 									{##}
-									{#									<input type="time" id="appt" name="appt"#}
-									{#									       value="13:30" step="60" min="12:00" max="18:00" required>#}
+									{#		<input type="time" id="appt" name="appt"#}
+									{#	     value="13:30" step="60" min="12:00" max="18:00" required>#}
 
 									<div class="invalid-feedback">
 										Please choose time.
@@ -626,7 +625,7 @@
 
 					{% else %}
 
-						<!-- if customers are fulled -->
+						<!-- if customers are enough/fulled -->
 
 						<div class="text-center pb-3">
 							<h2 class="font-weight-bolder text-danger">
@@ -644,7 +643,7 @@
 
 				{% endif %}
 
-				{#				{% endfor %}#}
+				{#	{% endfor %}#}
 
 			{% else %}
 
@@ -654,12 +653,12 @@
 					<h2 class="font-weight-bolder font-weight-bold">Hi dear, </h2>
 				</div>
 				<div class="text-center">
-					<p class="font-size-19">Before booking with us you need to
+					<p class="font-size-19">Before booking Butcher you need to
 						{#							href="{% url 'accounts:register' %}">register</a>#}
-						<a href="{% url 'accounts2:signin' %}?next={{ request.path }}">Login</a>
+						<a href="{% url 'accounts2:signin' %}?next={{ request.path }}" class="btn btn-secondary">Login</a>
 
 						{#						<a class="font-weight-bolder" href="{% url 'accounts2:signin' %}">Login</a> #}
-						it will take few seconds.
+{#						it will take few seconds.#}
 					</p>
 				</div>
 				<!-- End of before order must need to login -->
@@ -703,8 +702,9 @@
 
 			<div class="offset-md-2 col-md-8 offset-md-2">
 				<p class="font-size-18">
-					DoorMeat is a technology company that on demand provide best Butchers to people.
-					We do this by empowering local businesses and generate new ways for people to earn and live.
+					DoorMeat is a company that on demand provide best Butchers to people on different
+					festivals like Eid, wedding etc.
+					Our mission is to make better festivals.
 				</p>
 			</div>
 
@@ -778,7 +778,7 @@
 						</div>
 						<h4 class="font-weight-bolder">Convenience</h4>
 						<p class="font-size-18">
-							It's too convenience to use our software
+							It's too convenience to use our platform
 							just signup and find butcher.
 						</p>
 
@@ -804,7 +804,7 @@
 				Right now we are providing our services
 				only in <strong>Lahore & Gujranwala</strong>.
 				<br>
-				Soon we will be in every city, stay tuned for more info.
+				Stay tuned with us for more info.
 			</p>
 
 		</div>
@@ -837,7 +837,7 @@
 							<img src="/static/images/register.png" width="55" alt="register"/>
 						</div>
 						<h4 class="font-weight-bolder">Fill Form</h4>
-						<p class="font-size-18">
+						<p class="font-size-17">
 							Complete the book butcher form at the top of this page
 							and apply for a butcher.
 						</p>
@@ -857,8 +857,8 @@
 							     class=""/>
 						</div>
 						<h4 class="font-weight-bolder">Got butcher</h4>
-						<p class="font-size-18">
-							After submitting form,
+						<p class="font-size-17">
+							After submitting form & payment,
 							you can get confirmation of your
 							order.
 						</p>
@@ -867,6 +867,7 @@
 				</div>
 
 			</div>
+
 		</div>
 	</div>
 
@@ -893,7 +894,6 @@
 	</div>
 
 	<!--End Animation Section -->
-
 
 	<!-- FAQs -->
 
@@ -1016,7 +1016,6 @@
 	</div>
 
 	<!-- End of FAQs -->
-
 
 	<footer class="site-footer bg-light m-0 p-0">
 		<div class="container pt-4">

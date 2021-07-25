@@ -5,7 +5,6 @@ app_name = 'orders3'
 
 urlpatterns = [
 
-
     # Customer Section
 
     path('customer/form', views.customer_form, name='customer_form'),
@@ -31,7 +30,7 @@ urlpatterns = [
     path('butcher/form', views.butcher_form, name='butcher_form'),
     path('b/response/<int:butcher_id>', views.butch_response, name='butch_response'),
 
-    path('b_order_update/<int:butcher_id>', views.butch_order_update,
+    path('b/order_update/<int:butcher_id>', views.butch_order_update,
          name='butch_order_update'),
 
     path('b_order_delete/<int:butcher_id>', views.butch_order_delete,
@@ -41,6 +40,6 @@ urlpatterns = [
 
     path('order_info/<int:user_id>', views.order_info, name='order_info'),
 
-    path('help-centre', views.support, name='support')
+    path('help-center', views.support, name='support')
 
 ]

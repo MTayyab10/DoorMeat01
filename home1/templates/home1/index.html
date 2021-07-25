@@ -29,6 +29,24 @@
 
 	<style>
 
+        .tagLine .tag:before {
+            content: '';
+            animation: animate infinite 30s;
+        }
+
+        @keyframes animate {
+            0% {
+            "Sacrifice"
+            }
+            80% {
+            "Celebrate"
+            }
+            100% {
+            "Enjoy"
+            }
+        }
+
+
         .anmte .sd:before {
             content: '';
             animation: animate infinite 30s;
@@ -52,8 +70,7 @@
 
 <body>
 
-
-<!-- show different msgs to user let
+<!-- show msgs to user let
       know that like login etc --->
 
 {% if messages %}
@@ -116,7 +133,65 @@
 
 {% endif %}
 
-<!-- End of msg section --->
+<!-- End of USER msg section --->
+
+
+<!-- Some notifications and offers section -->
+
+{% if offer %}
+
+	<div class="alert alert-info alert-dismissible m-0" id="msg">
+		<div class="offset-md-3 ">
+
+			<div class="">
+				<svg class="" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+					<symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+						<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+					</symbol>
+					<symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+						<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+					</symbol>
+					<symbol id="exclamation-triangle-fill" fill="currentColor"
+					        viewBox="0 0 16 16">
+						<path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+					</symbol>
+				</svg>
+
+
+				<div class=" d-flex align-items-center" role="alert">
+
+
+					<div class="ml-2">
+						{{ offer_text }}
+					</div>
+
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times; </a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<script>
+
+    // suppose the `id` attribute of element is `msg`.
+    let message_ele = document.getElementById("msg");
+
+    {#setTimeout(function () {#}
+    {#    message_ele.style.display = "none";#}
+    {# }, 6000);#}
+    // Timeout is 6 sec, you can change it
+
+    document.addEventListener('DOMContentLoaded',
+        function () {
+            document.querySelector("#del")
+        }
+    )
+
+</script>
+{% endif %}
+
+<!-- end of Notifications and offers  -->
+
 
 <div class="site-wrap" id="home-section">
 	<div class="site-mobile-menu site-navbar-target">
@@ -205,29 +280,46 @@
 
 						</ul>
 					</nav>
+
 				</div>
 
 			</div>
 		</div>
-
 	</header>
 
-
-	<!-- site-section-cover overlay overlap -->
-
-	<div class="site-section-cover overlay"
-	     style="background-image: url('/static/images/all-animals-vector.jpg');">
-		{#https://www.filepicker.io/api/file/4pwDDXkTdFPzLDrX7Egc' -->#}
-
+	<div class='site-section bg-light'
+			{#	         style="background-image: url('/static/images/all-animals-vector.jpg')"#}
+	>
 		<div class="container">
-			<div class="row align-items-center justify-content-center">
-				<div class="col-lg-10">
 
-					<h2 class="text-light">It's a time to <strong>Sacrifice</strong></h2>
-					<h3 class="text-light">Try to make a good Eid, Enjoy this Eid with your
-						family, not become
-					</h3>
-					{#					<h2 class="text-light ">Not with Butchers</h2>#}
+			<div class="rounded-3 tagLine">
+				<div class="container-fluid ">
+
+					<div class="row">
+						<div class="col-md-5">
+
+							<h2 class="font-weight-bold">It's time to <span class="">Sacrifice</span></h2>
+							<p class="font-size-19">
+
+								Find best Butchers (Qsai), At suitable price.
+								Your time, Your location.
+								Celebrate this Eid with us, Happy Headache Free Eid
+								{#					<img src="" alt="A pic"/>#}
+							</p>
+
+							<a href="#learn-more">
+								<button class="btn btn-primary btn-sm" type="button">Learn More</button>
+							</a>
+
+
+						</div>
+						<div class="offset-md-2 col-md-5">
+							<div>
+								{% include 'home1/IllustrationSVG/jumbotorn-pic.html' %}
+							</div>
+						</div>
+					</div>
+
 				</div>
 			</div>
 		</div>
@@ -238,28 +330,32 @@
 	<div class="site-section text-center">
 		<div class="container">
 
-			<h2 class="font-weight-bold mb-1">How it works</h2>
-			<p class="font-size-16">Clear, easy and simple Procedure!</p>
-			<hr>
+			<div id="learn-more">
+
+				<h2 class="font-weight-bold mb-1">How it works</h2>
+				<p class="font-size-15">Clear, easy and simple Procedure!</p>
+				<hr>
+			</div>
+
 			<!-- Steps of how it Work -->
 
 			<div class="row">
 
 				<!-- 1 Customer form  -->
 
-				<div class="offset-md-1 col-md-4">
+				<div class="offset-md-1 col-md-4 pt-1 pb-1">
 
-					<div class="pb-1">
+					<div class="pt-1 pb-1">
 						<img src="{% static 'images/butcher.jpg' %}"
 						     alt="Butcher" width="70">
 					</div>
 
 					<h4 class="font-weight-bolder pt-2">Need a Butcher</h4>
-					<div class="font-size-17 pb-1">
+					<div class="font-size-16 pb-1">
 						Hire a profession butcher at suitable price, choose your time and location.
 					</div>
 
-					<i class="fas fa-arrow-right text-secondary font-size-15"></i>
+					<i class="fas fa-arrow-right text-secondary font-size-14"></i>
 
 					<a href="{% url 'orders3:customer_form' %}"
 					   class="btn btn-link">
@@ -274,7 +370,7 @@
 				<div class="offset-md-2 col-md-4 pt-2"> <!--for p & m mt-4 pt-4-->
 					<!--for p & m mt-4 mb-4-->
 
-					<div class="pb-2">
+					<div class="pt-2">
 						<img src="{% static 'images/partner.png' %}"
 						     alt="Partner" width="70">
 					</div>
@@ -285,7 +381,7 @@
 						Grow your orders & reach new customers by partnering with us.
 					</div>
 
-					<i class="fas fa-arrow-right text-secondary font-size-15"></i>
+					<i class="fas fa-arrow-right text-secondary font-size-14"></i>
 					<a href="{% url 'orders3:butcher_form' %}" class="btn btn-link">
 						<button type="button" class="btn btn-outline-primary font-size-14">
 							Start Earning
@@ -360,9 +456,10 @@
 
 	<div class="site-section text-center">
 		<div class="container">
-			<div class="p-2"> <!-- See how We do Work -->
-				<h3 class="font-weight-bold">Advantages</h3>
-				<div class="font-size-18">
+
+			<div class=""> <!-- See how We do Work -->
+				<h2 class="font-weight-bold">Advantages</h2>
+				<div class="font-size-16">
 					Benefits of work with us
 				</div>
 			</div>
@@ -372,42 +469,39 @@
 				<!-- First 1 Customer support -->
 
 				<div class="col-md-4">
-					<div class="m-2 p-2">
-						<div class="p-1">
-							<img src="/static/images/customer-service.svg" width="70" alt="customer-service"
-							     class=""/>
-						</div>
-						<div class="pt-2">
 
-							<h4 class="font-weight-bolder">Automate Dispatch</h4>
-							<p class="mt-2 font-size-18">
-								Use our auto-sign system. We use our algorithms for better service.
-							</p>
+					<div>
+						{% include 'home1/IllustrationSVG/advantages-support.html' %}
+					</div>
 
-						</div>
+					<div class="pt-2">
 
+						<h3 class="font-weight-bolder">Support</h3>
+						<p class="mt-2 font-size-17">
+							We provide best customer support
+							24/7 for our customers.
+						</p>
 
 					</div>
+
 				</div>
 
 				<!-- Second 2 alerts -->
 
 				<div class="col-md-4">
-					<div class="m-2 p-2">
-						<div class="p-1">
-							<img src="/static/images/tracking-alerts.svg" width="70" alt="alerts"/>
-						</div>
 
-						<div class='pt-2'>
+					<div>
 
-							<h4 class="font-weight-bolder">Real Time Tracking</h4>
-							<p class="mt-2 text-secondary font-size-18">
-								Avoid sending orders one by one, use our
-								auto-assign feature.
-							</p>
-						</div>
+					</div>
+					{% include 'home1/IllustrationSVG/advantages-gift.html' %}
 
+					<div class='pt-2'>
 
+						<h3 class="font-weight-bolder">Gifts</h3>
+						<p class="mt-2 font-size-17">
+							We have amazing gifts for our customers and butcher.
+
+						</p>
 					</div>
 
 				</div>
@@ -415,76 +509,26 @@
 				<!-- Third 3 digital proof -->
 
 				<div class="col-md-4">
-					<div class="m-2 p-2">
-						<div class="p-1">
-							<img src="/static/images/signature-verification.svg" width="70" alt="Digital Proof of Order"
-							     class=""/>
-						</div>
-						<div class='pt-2'>
 
-							<h4 class="font-weight-bolder">Digital Proof</h4>
-							<p class="mt-2 text-secondary font-size-18">
-								You can show proof of order. If you are customer
-								or even butcher.
-							</p>
+					<div>
+						{% include 'home1/IllustrationSVG/advantages-digital-proof.html' %}
+					</div>
 
-						</div>
 
+
+					<div class='pt-2'>
+
+						<h3 class="font-weight-bolder">Digital Proof</h3>
+						<p class="mt-2 font-size-17">
+							You can show proof of order. If you are customer
+							or even butcher.
+						</p>
 
 					</div>
+
 				</div>
 
 				<!-- Fourth 4 -->
-
-				{#				<div class="col-md-4">#}
-				{#					<div class="pr-3 mt-2 mb-4">#}
-				{#						<div class="pt-4 pb-4">#}
-				{#							<img src="/static/images/rewards-program.svg" width="74" alt="Digital Proof of Order"#}
-				{#							     class=""/>#}
-				{#						</div>#}
-				{#						<h4 class="font-weight-bold">Rewards Program</h4>#}
-				{#						<p class="mt-2 text-secondary lead">#}
-				{#							Track customer spending and our system will categorize your customers into different tier#}
-				{#							levels using our spending rewards program based on their monthly spending.#}
-				{#						</p>#}
-				{##}
-				{#					</div>#}
-				{#				</div>#}
-
-				<!-- Five 5 -->
-
-				{#				<div class="col-md-4">#}
-				{#					<div class="pr-4 pl-4 mt-2 mb-4">#}
-				{#						<div class="pt-4 pb-4">#}
-				{#							<img src="/static/images/autonomous-delivery-communication.svg" width="80"#}
-				{#							     alt="Digital Proof of Order"#}
-				{#							     class=""/>#}
-				{#						</div>#}
-				{#						<h4 class="font-weight-bold">Autonomous Communication</h4>#}
-				{#						<p class="mt-2 text-secondary lead">#}
-				{#							Autonomously send SMS and call status update notifications and protect your phone numbers.#}
-				{#						</p>#}
-				{##}
-				{#					</div>#}
-				{#				</div>#}
-
-				<!-- Six -->
-
-				{#				<div class="col-md-4">#}
-				{#					<div class="pl-4 pr-4 mt-2 mb-4">#}
-				{#						<div class="pt-4 pb-4">#}
-				{#							<img src="/static/images/delivery-software-enhanced-analytics.svg" width="90"#}
-				{#							     alt="Enhanced Analytics"#}
-				{#							     class=""/>#}
-				{#						</div>#}
-				{#						<h4 class="font-weight-bold">Enhanced Analytics</h4>#}
-				{#						<p class="mt-2 text-secondary lead">#}
-				{#							Make more informed decisions using our system,#}
-				{#							and enhance your analytics in better way.#}
-				{#						</p>#}
-				{##}
-				{#					</div>#}
-				{#				</div>#}
 
 			</div>
 		</div>
@@ -520,27 +564,26 @@
 	<div class="site-section text-center">
 		<div class="container">
 
-			<h3 class="font-weight-bolder pb-2">
+			<h3 class="font-weight-bold pb-2">
 				Customer Reviews
 			</h3>
 
 			<div class="row">
 
-				<div class="offset-md-1 col-md-4">
-					<h4 class="">Meet Sheraz</h4>
-					<p class="font-size-18">
-						from Lahore'.
-						Ali has been a our customer for a few months
-						and would like to tell you a little bit about his experience so far.
-					</p>
+{#				<div class="offset-md-1 col-md-4">#}
+{#					<h4 class="">Meet Happy Customers</h4>#}
+{#					<p class="font-size-18">#}
+{#						from Lahore'.#}
+{#						Ali has been a our customer for a few months#}
+{#						and would like to tell you a little bit about his experience so far.#}
+{#					</p>#}
+{#				</div>#}
+
+				<div class="col-md-5 offset-md-1">
+					{% include 'home1/IllustrationSVG/customer-reviews.html' %}
 				</div>
-				<!--<div class="col-md-4 offset-md-1">-->
 
-				<!--	<iframe width="340" height="300" src="https://www.youtube.com/embed/x5trGVMKTdY" frameborder="0"-->
-				<!--	        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"-->
-				<!--	        allowfullscreen></iframe>-->
 
-				<!--</div>-->
 
 			</div>
 
@@ -549,14 +592,6 @@
 	</div>
 
 	<!-- End of Customer testimonials -->
-
-
-	{#	<div class="site-section container">#}
-	{#		<div>#}
-	{#			<script async src="https://cse.google.com/cse.js?cx=704b92d517e3e9a72"></script>#}
-	{#			<div class="gcse-searchbox-only"></div>#}
-	{#		</div>#}
-	{#	</div>#}
 
 
 	<footer class="site-footer bg-light m-0 p-0">
@@ -590,20 +625,6 @@
 								<li><a href="#">Privacy Policy</a></li>
 							</ul>
 						</div>
-						<!--<div class="col-lg-4">-->
-						<!--	<h2 class="footer-heading mb-4">Support</h2>-->
-						<!--	<ul class="list-unstyled">-->
-						<!--		<li><a href="#">Contact Us</a></li>-->
-						<!--	</ul>-->
-						<!--</div>-->
-
-						<!--<div class="col-lg-3">-->
-						<!--	<h2 class="footer-heading mb-4">Contribute</h2>-->
-						<!--	<ul class="list-unstyled">-->
-						<!--		<li><a href="#">Invest</a></li>-->
-						<!--		<li><a href="">Careers</a></li>-->
-						<!--	</ul>-->
-						<!--</div>-->
 
 					</div>
 				</div>

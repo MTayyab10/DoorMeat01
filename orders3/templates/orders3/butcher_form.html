@@ -137,6 +137,7 @@
 			{% if user.is_authenticated %}
 
 				{% for b in one_butcher %}
+
 					{% if b.name in request.user.username %}
 
 						<!-- Order Status section -->
@@ -180,6 +181,7 @@
 						<!-- End of Order status section -->
 
 					{% endif %}
+
 				{% empty %}
 
 					<!-- check this USER is exist or not
@@ -241,7 +243,7 @@
 										href="{% url 'accounts2:edit_profile' %}">{{ user.username }}</a>
 									work with us
 								</h2>
-								<p class="font-size-18">earn with us as much as you can</p>
+								<p class="font-size-17">earn with us as much as you can</p>
 
 							</div>
 
@@ -385,9 +387,8 @@
 									<label for="heard" class="form-label">How did you hear about us?</label>
 									<select class="form-select" name="heard" id="heard" required>
 										<option selected disabled value="">Choose...</option>
-										<option>Facebook</option>
-										<option>Google</option>
 										<option>Peoples</option>
+										<option>Flyers</option>
 										<option>Other</option>
 
 									</select>
@@ -469,7 +470,7 @@
                 'use strict'
 
                 // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                var forms = document.querySelectorAll('.needs-validation')
+                let forms = document.querySelectorAll('.needs-validation')
 
                 // Loop over them and prevent submission
                 Array.prototype.slice.call(forms)
@@ -499,8 +500,8 @@
 
 			<div class="offset-md-2 col-md-8 offset-md-2">
 				<p class="font-size-18">
-					DoorMeat is a technology company that connects people with the best butchers in their cities.
-					We do this by empowering local businesses and generate new ways for people to earn and live happily.
+					DoorMeat is a company that on demand provide best Butchers to people on different festivals like Eid, wedding etc.
+					Our mission is to make better and wonderful festivals.
 				</p>
 			</div>
 

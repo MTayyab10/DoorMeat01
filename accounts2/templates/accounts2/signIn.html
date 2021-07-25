@@ -65,13 +65,13 @@
 							<div class="form-block">
 								<div class="mb-4 text-center">
 									<h3><strong>Sign In</strong></h3>
-									<a href="">sign in with number</a>
+{#									<a href="">sign in with number</a>#}
 									<!-- Sign in with facebook -->
 									{#									 <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p>#}
 								</div>
-								<div class="fb-login-button" data-width="" data-size="medium"
-								     data-button-type="login_with" data-layout="rounded" data-auto-logout-link="true"
-								     data-use-continue-as="false"></div>
+{#								<div class="fb-login-button" data-width="" data-size="medium"#}
+{#								     data-button-type="login_with" data-layout="rounded" data-auto-logout-link="true"#}
+{#								     data-use-continue-as="false"></div>#}
 								<form action="{% url 'accounts2:signin' %}" method="post">
 
 									{% csrf_token %}
@@ -79,14 +79,12 @@
 									<div class="form-group first">
 										<label for="username">Username or Email</label>
 										<input type="text" class="form-control" name="username" id="username" required>
-
 									</div>
 
 									<div class="form-group last mb-4">
 										<label for="password">Password</label>
 										<input type="password" class="form-control" name="password" id="password"
 										       required>
-
 									</div>
 
 									<div class="d-flex mb-3 align-items-center">
@@ -102,7 +100,7 @@
 									<div id="msg">
 										{% for message in messages %}
 											{% if 'info' in message.tags %}
-												<h4 class="text-danger"> {{ message }}</h4>
+												<h4 class="text-danger font-weight-bolder"> {{ message }}</h4>
 											{% endif %}
 										{% endfor %}
 									</div>
@@ -116,7 +114,7 @@
 
                                         setTimeout(function () {
                                             message_ele.style.display = "none";
-                                        }, 6000);
+                                        }, 10000);
                                         // Timeout is 6 sec, you can change it
 
                                         document.addEventListener('DOMContentLoaded',
@@ -163,6 +161,7 @@
 					</div>
 
 				</div>
+
 			{% else %}
 
 				<!-- if user is login -->

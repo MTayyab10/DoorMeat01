@@ -93,6 +93,8 @@
 
 			{% if user.is_authenticated %}
 
+				{% if order %}
+
 				<div class="text-center pb-3">
 					<h2 class="font-weight-bolder font-weight-bold">
 						Update Order
@@ -222,30 +224,27 @@
 
 					<!-- Submit -->
 
-
 					<div class="row">
-
 
 						<div class="col p-4">
 
-							<button class="btn btn-outline-primary mr-2" type="submit">
+							<button type="submit" class="btn btn-primary mr-2">
 								Change
 							</button>
 
-							<a class="btn btn-outline-secondary ml-4"
+							<a class="btn btn-secondary ml-4"
 							   href="{% url 'orders3:cust_response' order.id %}">
 								Go back
 							</a>
-
 
 						</div>
 
 					</div>
 
-
 				</form>
 
 			{% endif %}
+		{% endif %}
 		</div>
 	</div>
 

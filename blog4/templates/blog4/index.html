@@ -29,9 +29,9 @@
 
 	<!-- Bootstrap Icons -->
 
-{#	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">#}
-{#	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>#}
-{#	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>#}
+	{#	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">#}
+	{#	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>#}
+	{#	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>#}
 
 	<style>
 
@@ -67,7 +67,10 @@
 
 				<div class="col-3">
 					<div class="site-logo">
-						<a href="{% url 'home1:index' %}" class="text-black"><strong>DoorMeat</strong></a>
+						<a href="{% url 'home1:index' %}"
+						   class="text-black font-weight-bold">
+							DoorMeat
+						</a>
 					</div>
 				</div>
 
@@ -75,14 +78,15 @@
 
 					<span class="d-inline-block d-lg-none">
 						<a href="#" class="site-menu-toggle js-menu-toggle py-5"><span
-							class="icon-menu h3 text-black"></span></a></span>
+								class="icon-menu h3 text-black"></span></a></span>
 
 					<nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
 
 						<ul class="site-menu main-menu js-clone-nav ml-auto">
 
 							<li><a href="{% url 'home1:index' %}" class="text-black nav-link">Home</a></li>
-							<li class="active"><a href="{% url 'blog4:index' %}" class="text-black nav-link">Blog</a></li>
+							<li class="active"><a href="{% url 'blog4:index' %}" class="text-black nav-link">Blog</a>
+							</li>
 							<li><a href="{% url 'home1:about' %}" class="nav-link text-black">About</a></li>
 							<li><a href="{% url 'home1:contact' %}" class="nav-link text-black">Contact</a></li>
 
@@ -108,22 +112,26 @@
 	</header>
 
 
-	<div class="site-section-cover"
-	     style="background-image: url('https://www.filepicker.io/api/file/4pwDDXkTdFPzLDrX7Egc');">
+	<div class="site-section">
 
-		<div class="container">
-			<div class="row align-items-center justify-content-center">
-				<div class="col-lg-10 text-center text-light p-5">
-					<h1 class="display-4 text-dark">{{ courses.name }}</h1>
-					<p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra
-						attention
-						to featured content or information.</p>
+		<div class="container text-center">
 
-					<p class="lead">
-						<a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-					</p>
+			<div class="row">
+				<h2 class="font-weight-bold pb-3">All Blogs</h2>
+
+{#					<a href="#learn-more">#}
+{#						<button class="btn btn-primary btn-sm" type="button">Learn More</button>#}
+{#					</a>#}
+{#				</div>#}
+				<div class="offset-md-4 col-md-4">
+					<div>
+						{% include 'blog4/IllustrationSVG/blog-post.html' %}
+					</div>
 				</div>
+
 			</div>
+
+
 		</div>
 	</div>
 
@@ -154,105 +162,108 @@
 
 						</div>
 					</div>
+				{% empty %}
+
+					<h3>Sorry, Don't have any Blog Post yet</h3>
+
 				{% endfor %}
 
-				<div class="col-lg-4 col-md-6 mb-4">
-					<div class="post-entry-1 h-100">
-						<a href="single.html" class="thumbnail-link">
-							<img src="images/img_3.jpg" alt="Image"
-							     class="img-fluid">
-						</a>
-						<div class="post-entry-1-contents">
-
-							<h2><a href="single.html">Microsoft Azure Synapse for Developers</a></h2>
-							<span class="meta d-inline-block mb-3">July 17, 2019 <span class="mx-2">by</span> <a
-									href="#">Admin</a></span>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores eos soluta, dolore
-								harum molestias consectetur.</p>
-						</div>
-					</div>
-				</div>
+{#				<div class="col-lg-4 col-md-6 mb-4">#}
+{#					<div class="post-entry-1 h-100">#}
+{#						<a href="single.html" class="thumbnail-link">#}
+{#							<img src="images/img_3.jpg" alt="Image"#}
+{#							     class="img-fluid">#}
+{#						</a>#}
+{#						<div class="post-entry-1-contents">#}
+{##}
+{#							<h2><a href="single.html">Microsoft Azure Synapse for Developers</a></h2>#}
+{#							<span class="meta d-inline-block mb-3">July 17, 2019 <span class="mx-2">by</span> <a#}
+{#									href="#">Admin</a></span>#}
+{#							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores eos soluta, dolore#}
+{#								harum molestias consectetur.</p>#}
+{#						</div>#}
+{#					</div>#}
+{#				</div>#}
 
 			</div>
 
-			<div class="row">
-				<div class="col-5">
-					<div class="custom-pagination">
-						<a href="#">1</a>
-						<span>2</span>
-						<a href="#">3</a>
-						<a href="#">4</a>
-						<a href="#">5</a>
-					</div>
-				</div>
-			</div>
+{#			<div class="row">#}
+{#				<div class="col-5">#}
+{#					<div class="custom-pagination">#}
+{#						<a href="#">1</a>#}
+{#						<span>2</span>#}
+{#						<a href="#">3</a>#}
+{#						<a href="#">4</a>#}
+{#						<a href="#">5</a>#}
+{#					</div>#}
+{#				</div>#}
+{#			</div>#}
 
 		</div>
 	</div>
 
-
-	<footer class="site-footer">
-		<div class="container">
+	<footer class="site-footer m-0 p-0">
+		<div class="container pt-4">
 			<div class="row">
-				<div class="col-lg-3">
-					<h2 class="footer-heading mb-4">Follow Us</h2>
+
+				<div class="col-lg-4">
+					<h2 class="footer-heading mb-3">Follow Us</h2>
 
 					<ul class="list-unstyled social">
 						<li><a href="#"><span class="icon-facebook"></span></a></li>
-						<li><a href="#"><span class="icon-instagram"></span></a></li>
+						<li><a href="#"><span class="icon-youtube"></span></a></li>
 						<li><a href="#"><span class="icon-twitter"></span></a></li>
-						<li><a href="#"><span class="icon-linkedin"></span></a></li>
+						{#						<li><a href="#"><span class="icon-linkedin"></span></a></li>#}
 					</ul>
 				</div>
+
 				<div class="col-lg-8 ml-auto">
 					<div class="row">
-						<div class="col-lg-3">
-							<h2 class="footer-heading mb-4">Institute</h2>
+						<div class="col-lg-6">
+							<h2 class="footer-heading mb-2">Company</h2>
 							<ul class="list-unstyled">
-								<li><a href="#">About Us</a></li>
-								<li><a href="#">Contact Us</a></li>
+								<li><a href="#">About us</a></li>
+								<li><a href="#">Contact</a></li>
 							</ul>
 						</div>
-						<div class="col-lg-3">
-							<h2 class="footer-heading mb-4">Resources</h2>
+						<div class="col-lg-6">
+							<h2 class="footer-heading mb-2">Resources</h2>
 							<ul class="list-unstyled">
-								{#								<li><a href="#">About Us</a></li>#}
-								{#								<li><a href="#">Testimonials</a></li>#}
 								<li><a href="#">Terms of Use</a></li>
-								<li><a href="#">Privacy</a></li>
-								{#								<li><a href="#">Contact Us</a></li>#}
+								<li><a href="#">Privacy Policy</a></li>
 							</ul>
 						</div>
-						<div class="col-lg-3">
-							<h2 class="footer-heading mb-4">Support</h2>
-							<ul class="list-unstyled">
-								<li><a href="#">Contact Us</a></li>
-							</ul>
-						</div>
-						<div class="col-lg-3">
-							<h2 class="footer-heading mb-4">Contribute</h2>
-							<ul class="list-unstyled">
-								<li><a href="#">Invest</a></li>
-							</ul>
-						</div>
+						<!--<div class="col-lg-4">-->
+						<!--	<h2 class="footer-heading mb-4">Support</h2>-->
+						<!--	<ul class="list-unstyled">-->
+						<!--		<li><a href="#">Contact Us</a></li>-->
+						<!--	</ul>-->
+						<!--</div>-->
+
+						<!--<div class="col-lg-3">-->
+						<!--	<h2 class="footer-heading mb-4">Contribute</h2>-->
+						<!--	<ul class="list-unstyled">-->
+						<!--		<li><a href="#">Invest</a></li>-->
+						<!--		<li><a href="">Careers</a></li>-->
+						<!--	</ul>-->
+						<!--</div>-->
+
 					</div>
 				</div>
 			</div>
 
 			<div class="row text-center mb-0">
 				<div class="col-md-12">
-					<div class="border-top pt-5 pb-0">
+					<div class="border-top pt-2 pb-1">
 						<p>
-							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-							Copyright &copy;<script>document.write(new Date().getFullYear());</script>
-							Some rights reserved
-							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							DoorMeat &copy;<script>document.write(new Date().getFullYear());</script>
 						</p>
 					</div>
 				</div>
 			</div>
 		</div>
 	</footer>
+
 </div>
 
 <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>

@@ -87,7 +87,7 @@
 
 								<div id="msg">
 									{% for message in messages %}
-										<h4 class="text-danger"> {{ message }}</h4>
+										<h4 class="text-danger font-weight-bolder"> {{ message }}</h4>
 									{% endfor %}
 								</div>
 
@@ -100,7 +100,7 @@
 
                                         setTimeout(function () {
                                             message_ele.style.display = "none";
-                                        }, 6000);
+                                        }, 10000);
                                         // Timeout is 6 sec, you can change it
 
                                         document.addEventListener('DOMContentLoaded',

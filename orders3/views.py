@@ -1,17 +1,16 @@
 from django.contrib import messages
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect, reverse
+from django.utils.timezone import datetime
 
 from .forms import (
-    CustomerChangeForm, DiscountChangeForm,
-    ButcherChangeForm
+    CustomerChangeForm, ButcherChangeForm
 )
-from .models import Customer, Discount, Butcher
+from .models import Customer, Butcher
 
 
 # CUSTOMER SECTION
-
 
 def customer_form(request):
     if request.method == 'POST':
@@ -23,12 +22,14 @@ def customer_form(request):
         quantity = request.POST['quantity']
         time = request.POST['time']
         heard = request.POST['heard']
+        # date_order = request.POST['date']
 
         # coupon = request.POST['coupon']
 
         c = Customer(name=name, mobile=mobile, town=town, city=city, quantity=quantity,
                      time=time, animal=animal, heard=heard)
         c.save()
+
         # if coupon is not None:
         #     cpn = Customer(coupon=coupon)
         #     cpn.save()
@@ -36,7 +37,7 @@ def customer_form(request):
         # else:
         #     print('coupon do not have3 ')
 
-        print("Customer form received")
+        print("Customer Form Received")
 
         # messages.info(request, "Your form is received")
 
@@ -57,11 +58,16 @@ def customer_form(request):
     # check - if user is already fill Butcher form
     check_butcher = Butcher.objects.filter(name=request.user.username).exists()
 
+    # date time
+    date = datetime.today()
+    print(date)
+
     return render(request, 'orders3/customer_form.html', {
         'one_customer': one_customer,
         'customers': customers,
         'count_customers': count_customers,
         'check_butcher': check_butcher,
+        # 'date': date,
 
     })
 

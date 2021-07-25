@@ -49,7 +49,7 @@
 
 				<div class="col-3">
 					<div class="site-logo">
-						<a href="{% url 'home1:index' %}"><strong>Butcher</strong></a>
+						<a href="{% url 'home1:index' %}"><strong>DoorMeat</strong></a>
 					</div>
 				</div>
 
@@ -78,16 +78,20 @@
 
 
 	<!-- Butcher Signup form -->
-	{#	<form method="post">#}
-	{##}
-	{#		{% csrf_token %}#}
-	{##}
-	{#		 {{ form }}#}
-	{#	     <input type="submit">#}
-	{##}
-	{#	</form>#}
+{#		<form method="post">#}
+{##}
+{#			{% csrf_token %}#}
+{##}
+{#			 {{ form }}#}
+{#		     <input type="submit">#}
+{##}
+{#		</form>#}
 	<div class="site-section">
 		<div class="container">
+
+	    {% if user.is_authenticated %}
+
+			{% if order %}
 
 			<div class="text-center pb-3">
 				<h2 class="font-weight-bolder font-weight-bold">
@@ -100,7 +104,7 @@
 
 				{% csrf_token %}
 
-					<!-- mobile -->
+				<!-- mobile -->
 
 				<div class="col-md-4">
 					<label for="town" class="form-label">Mobile</label><br>
@@ -233,15 +237,28 @@
 
 				<!-- Submit form -->
 
-				<div class="col-12">
+				<div class="row">
 
-					<button class="btn btn-primary" type="submit">
-						Submit
-					</button>
-				</div>
+						<div class="col p-4">
+
+							<button class="btn btn-primary mr-2" type="submit">
+								Change
+							</button>
+
+							<a class="btn btn-secondary ml-4"
+							   href="{% url 'orders3:butch_response' order.id %}">
+								Go back
+							</a>
+						</div>
+
+					</div>
 
 			</form>
 
+
+				{% endif %}
+
+	    {% endif %}
 		</div>
 	</div>
 
