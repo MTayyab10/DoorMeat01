@@ -3,7 +3,7 @@
 
 ### How to run a Clone (from GitHub) Django Project?
 
-First, need to install all requirements of project by running following command.
+First, clone project then need to need to install all requirements of project by running following command.
 
 ### In Git/Cmd
 
