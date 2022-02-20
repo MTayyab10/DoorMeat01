@@ -5,7 +5,7 @@
 
 First, need to install all requirements of project by running following command.
 
-`pip install -r requirements.txt`
+### In Git/Cmd
 
 1. Install virtualenv with pip:
 
@@ -19,11 +19,25 @@ First, need to install all requirements of project by running following command.
 
 4. Install dependencies:
 
-```pip install -r requirements.txt```
+   ```pip install -r requirements.txt```
+
+After that you have to configure the database. You have to make migrations and then migrate.
+
+   `python manage.py makemigrations`
+
+to create migration files for the models already defined in the codes you have cloned.
+
+  `python manage.py migrate`
+  
+## Clone in PyCharm IDE, Follow this procedure
+       
+First, clone project then need to install all requirements of project by running following command.
+
+`pip install -r requirements.txt`
 
 After that you have to configure the database.You have to make migrations and then migrate.
 
-`python manage.py makemigrations`
+`python manage.py makemigrations `
 
 to create migration files for the models already defined in the codes you have cloned.
 
