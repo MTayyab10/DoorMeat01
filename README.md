@@ -1,5 +1,5 @@
 # DoorMeat01
-    a simple booking service app
+    A simple booking service app
 
 ### How to run a Clone (from GitHub) Django Project?
 
@@ -15,3 +15,11 @@ to create migration files for the models already defined in the codes you have c
 
 `python manage.py migrate`
 
+1. Install virtualenv with pip:
+``` pip install virtualenv ```
+2. Create new virtual env with python3:
+```virtualenv venv -p full_path_to_python # e.g. use `where python` to find the path to correct python```
+3. Activate virtual env:
+```venv\Scripts\activate```
+4. Install dependencies:
+pip install -r requirements.txt
